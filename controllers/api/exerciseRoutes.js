@@ -5,7 +5,7 @@ const { Exercise, User } = require('../../models');
 // GET all exercises
 router.get('/', async (req, res) => {
   try {
-    const exerciseData = await exercise.findAll({
+    const exerciseData = await Exercise.findAll({
       include: [{ model: User }],
     });
     res.status(exerciseData);
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 // GET a single exercise
 router.get('/:id', async (req, res) => {
   try {
-    const exerciseData = await exercise.findByPk(req.params.id, {
+    const exerciseData = await Exercise.findByPk(req.params.id, {
       include: [{ model: User }],
     });
     
@@ -32,26 +32,26 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// CREATE a card
+// CREATE an exercise
 router.post('/', async (req, res) => {
   try {
-    const locationDatexercise.create({
-      reader_id: req.body.reader_id,
+    const exerciseData = await Exercise.create({
+      user_id: req.body.user_id,
     });
-    res.status(200).json(locationData);
+    res.status(200).json(exerciseData);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-// DELETE a card
+// DELETE an exercise
 router.delete('/:id', async (req, res) => {
   tryexerciseDatexercise.destroy({
       where: {
         id: req.params.id,
       },
     }exerciseData) {
-      res.status(404).json({ message: 'No library card found with that id!' });
+      res.status(404).json({ message: 'No exercise found with that id!' });
       return;
     }
 
