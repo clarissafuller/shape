@@ -46,11 +46,13 @@ router.post('/', async (req, res) => {
 
 // DELETE an exercise
 router.delete('/:id', async (req, res) => {
-  tryexerciseDatexercise.destroy({
+  try {
+    const exerciseData = await Exercise.destroy({
       where: {
         id: req.params.id,
       },
-    }exerciseData) {
+    });
+     if (!exerciseData) {
       res.status(404).json({ message: 'No exercise found with that id!' });
       return;
     }
