@@ -1,12 +1,12 @@
 const router = require("express").Router();
 
-const { Exercise, User } = require('../../models');
+const { Exercise, Routine } = require('../../models');
 
 // GET all exercises
 router.get('/', async (req, res) => {
   try {
     const exerciseData = await Exercise.findAll({
-      include: [{ model: User }],
+      include: [{ model: Routine }],
     });
     res.status(exerciseData);
   } catch (err) {
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const exerciseData = await Exercise.findByPk(req.params.id, {
-      include: [{ model: User }],
+      include: [{ model: Routine }],
     });
     
     if (!exerciseData) {
@@ -36,7 +36,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const exerciseData = await Exercise.create({
-      user_id: req.body.user_id,
+      routine_id: req.body.routine_id,
     });
     res.status(200).json(exerciseData);
   } catch (err) {
