@@ -19,22 +19,15 @@ router.post("/search", async (req, res) => {
         [Op.and]: bodyItems,
       },
     });
-    //  else if (name) {
-    //   exerciseData = await Exercise.findOne({
-    //     name,
-    //   });
-    // } else if (muscle) {
-    //   exerciseData = await Exercise.findOne({
-    //     muscle,
-    //   });
-    // }
-    res.json(exerciseData);
-    // if (!exerciseData) {
-    //   // third party api call
-    //   const exercise = getAPIExercises();
-    //   res.json(exercise);
-    // }
 
+    if (!exerciseData) {
+      // third party api call
+      const exercise = await getAPIExercises(req.body);
+      console.log(exercise);
+      res.json(exercise);
+      return;
+    }
+    res.json(exerciseData);
     // const exerciseData = await Exercise.findOne();
     // const exercise = exerciseData.map((exercise) =>
     //   exercise.get({ plain: true })
