@@ -15,14 +15,10 @@ Routine.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    exercise_id: {
-      type: DataTypes.STRING,
+    is_template: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    is_template: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-      },
   },
   {
     sequelize,
