@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Bicep curl",
+        "muscle_group": "bicep"
+    },
+    {
+        "name": "Barbell glute bridge",
+        "muscle_group": "glutes"
+    },
+    {
+        "name": "Single-leg cable hip extension",
+        "muscle_group": "glutes"
+    },
+    {
+        "name": "Standing Calf Raises",
+        "muscle_group": "calves"
+    },
+    {
+        "name": "Dumbbell Bench Press",
+        "muscle_group": "chest"
+    }
+]
