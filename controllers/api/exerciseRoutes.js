@@ -8,16 +8,18 @@ const { getAPIExercises } = require("../../utils/helpers");
 router.post("/search", async (req, res) => {
   //try to get exercise by name from database
   try {
-    const { name, muscle } = req.body;
     let exerciseData;
-    if (name && muscle) {
-      exerciseData = await Exercise.findOne({
-        where: {
-          [Op.and]: [{ name }, { muscle }],
-        },
-      });
-    }
-    // } else if (name) {
+    const bodyItems = Object.keys(req.body).map((key) => ({
+      [key]: req.body[key],
+    }));
+    console.log("BodyItems", bodyItems);
+
+    exerciseData = await Exercise.findOne({
+      where: {
+        [Op.and]: bodyItems,
+      },
+    });
+    //  else if (name) {
     //   exerciseData = await Exercise.findOne({
     //     name,
     //   });
