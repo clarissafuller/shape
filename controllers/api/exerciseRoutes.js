@@ -1,31 +1,58 @@
 const router = require("express").Router();
 
-const { Exercise, Routine } = require('../../models');
+const { Op } = require("sequelize");
+const { Exercise, Routine } = require("../../models");
 const { getAPIExercises } = require("../../utils/helpers");
 
-//search by exercise 
-router.get('/search/', async (req, res) => {
-//try to get exercise by name from database
+//search by exercise
+router.post("/search", async (req, res) => {
+  //try to get exercise by name from database
   try {
-    const exerciseData = await Exercise.findOne(req.body);
-   const exercise = exerciseData.map((exercise) => exercise.get({ plain: true }));
-//if it doesnt exsist in the database already, send out a fetch request to look for it
-if (!exerciseData) {
-  getAPIExercises();
-};
-//if it still doesnt exsist, create the workout (save this for later if we have time)
+    const { name, muscle } = req.body;
+    let exerciseData;
+    if (name && muscle) {
+      exerciseData = await Exercise.findOne({
+        where: {
+          [Op.and]: [{ name }, { muscle }],
+        },
+      });
+    }
+    // } else if (name) {
+    //   exerciseData = await Exercise.findOne({
+    //     name,
+    //   });
+    // } else if (muscle) {
+    //   exerciseData = await Exercise.findOne({
+    //     muscle,
+    //   });
+    // }
+    res.json(exerciseData);
+    // if (!exerciseData) {
+    //   // third party api call
+    //   const exercise = getAPIExercises();
+    //   res.json(exercise);
+    // }
 
-res.render("exercise", {
-  exercise,
- });
-} catch (err) {
-  res.status(500).json(err);
-}
+    // const exerciseData = await Exercise.findOne();
+    // const exercise = exerciseData.map((exercise) =>
+    //   exercise.get({ plain: true })
+    // );
+    // //if it doesnt exsist in the database already, send out a fetch request to look for it
+    // if (!exerciseData) {
+
+    // }
+    //if it still doesnt exsist, create the workout (save this for later if we have time)
+
+    // res.render("exercise", {
+    //   exercise,
+    //  });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
-
 // GET all exercises
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const exerciseData = await Exercise.findAll({
       include: [{ model: Routine }],
@@ -37,14 +64,14 @@ router.get('/', async (req, res) => {
 });
 
 // GET a single exercise
-router.get('/:id', async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const exerciseData = await Exercise.findByPk(req.params.id, {
       include: [{ model: Routine }],
     });
-    
+
     if (!exerciseData) {
-      res.status(404).json({ message: 'No exercise found with that id!' });
+      res.status(404).json({ message: "No exercise found with that id!" });
       return;
     }
 
@@ -55,7 +82,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // CREATE an exercise
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const exerciseData = await Exercise.create({
       routine_id: req.body.routine_id,
@@ -67,15 +94,15 @@ router.post('/', async (req, res) => {
 });
 
 // DELETE an exercise
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const exerciseData = await Exercise.destroy({
       where: {
         id: req.params.id,
       },
     });
-     if (!exerciseData) {
-      res.status(404).json({ message: 'No exercise found with that id!' });
+    if (!exerciseData) {
+      res.status(404).json({ message: "No exercise found with that id!" });
       return;
     }
 
@@ -85,6 +112,4 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-
-
-module.exports = router
+module.exports = router;
