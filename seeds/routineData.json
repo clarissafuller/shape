@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Leg Day",
+        "exercise_id": 1, 
+        "is_template": false
+    },
+    {
+        "name": "Arm Day",
+        "exercise_id": 2, 
+        "is_template": false
+    },
+    {
+        "name": "Upper Body",
+        "exercise_id": 3, 
+        "is_template": false
+    },
+    {
+        "name": "Lower Body",
+        "exercise_id": 4, 
+        "is_template": false
+    },
+    {
+        "name": "Full Stack",
+        "exercise_id": 5, 
+        "is_template": false
+    }
+]
