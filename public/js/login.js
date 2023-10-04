@@ -8,16 +8,20 @@ const loginFormHandler = async (event) => {
 
   if (email && password) {
     // Send the e-mail and password to the server
-    const response = await fetch("/api/users/login", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-      headers: { "Content-Type": "application/json" },
-    });
+    try {
+      const response = await fetch("/api/users/login", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
+      });
 
-    if (response.ok) {
-      document.location.replace("/");
-    } else {
-      alert("Failed to log in");
+      if (response.ok) {
+        document.location.replace("/");
+      } else {
+        alert("Failed to log in");
+      }
+    } catch (err) {
+      alert(err);
     }
   }
 };
@@ -28,29 +32,36 @@ const submitFormHandler = async (event) => {
 
   // Gather the data from the form elements on the page
   const name = document.querySelector("#name-submit").value.trim();
-  const email = document.querySelector("#email-login").value.trim();
-  const password = document.querySelector("#password-login").value.trim();
+  const email = document.querySelector("#email-submit").value.trim();
+  const password = document.querySelector("#password-submit").value.trim();
 
   if (name && email && password) {
-    // Send the name, e-mail and password to the server
-    const response = await fetch("/api/users/sign-up", {
-      method: "POST",
-      body: JSON.stringify({ name, email, password }),
-      headers: { "Content-Type": "application/json" },
-    });
+    try {
+      // Send the name, e-mail and password to the server
+      const response = await fetch("/api/users/sign-up", {
+        method: "POST",
+        body: JSON.stringify({ name, email, password }),
+        headers: { "Content-Type": "application/json" },
+      });
 
-    if (response.ok) {
-      alert("You have successfully signed up!");
-    } else {
-      alert("Failed to sign up");
+      if (response.ok) {
+        document.location.replace("/login?");
+        alert("Your account has been created!");
+      } else {
+        alert("Something went wrong, try again!");
+      }
+    } catch (err) {
+      alert(err);
     }
+  } else {
+    console.log("no data");
   }
 };
 
 document
   .querySelector("#login-form")
-  .addEventListener("click", loginFormHandler);
+  .addEventListener("submit", loginFormHandler);
 
 document
   .querySelector("#signUp-submit")
-  .addEventListener("click", submitFormHandler);
+  .addEventListener("submit", submitFormHandler);
