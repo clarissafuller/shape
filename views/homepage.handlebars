@@ -1,1 +1,43 @@
-<h1>Homepage</h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand ml-2" href="#">Navbar</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarText"
+    aria-controls="navbarText"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="./homepage">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Calendar</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Create Workout</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Premade Workout</a>
+      </li>
+    </ul>
+  </div>
+  {{#if logged_in}}
+    <form class="form-inline my-2">
+      <button
+        class="btn btn-outline-secondary my-2 me-2"
+        id="logout"
+      >logout</button>
+    </form>
+  {{/if}}
+</nav>
+
+{{#if logged_in}}
+  <script src="/js/logout.js"></script>
+{{/if}}
