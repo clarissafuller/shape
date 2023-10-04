@@ -2,6 +2,20 @@ const router = require("express").Router();
 
 const { Exercise, Routine } = require('../../models');
 
+//search by exercise 
+router.get('/search/:name', async (req, res) => {
+//try to get exercise by name from database
+  try {
+    const exerciseData = await Exercise.findByPk(req.params.name);
+    res.status(exerciseData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+//if it doesnt exsist in the database already, send out a fetch request to look for it
+//if it still doesnt exsist, create the workout (save this for later if we have time)
+
+
 // GET all exercises
 router.get('/', async (req, res) => {
   try {
@@ -61,6 +75,19 @@ router.delete('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+const request = require('request');
+var muscle = 'biceps';
+request.get({
+  url: 'https://api.api-ninjas.com/v1/exercises?muscle=' + muscle,
+  headers: {
+    'X-Api-Key': 'YOUR_API_KEY'
+  },
+}, function(error, response, body) {
+  if(error) return console.error('Request failed:', error);
+  else if(response.statusCode != 200) return console.error('Error:', response.statusCode, body.toString('utf8'));
+  else console.log(body)
 });
 
 module.exports = router;
