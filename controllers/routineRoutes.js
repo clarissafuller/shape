@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { Routine, Exercise } = require("../models");
 
-// GET all routines for make-routine page
+// GET all routines for routine page
 router.get("/", async (req, res) => {
   try {
     const dbRoutineData = await Routine.findAll();
@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
       routine.get({ plain: true })
     );
 
-    res.render("make-routine", {
+    res.render("routine", {
       routines,
     });
   } catch (err) {
@@ -32,7 +32,7 @@ router.get("/routine/:id", async (req, res) => {
     });
 
     const routine = dbRoutineData.get({ plain: true });
-    res.render("make-routine", { routine });
+    res.render("routine", { routine });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
