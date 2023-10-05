@@ -31,4 +31,19 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// POST ONE request (create)
+// api/routines
+router.post("/", async (req, res) => {
+  try {
+    const newRoutine = await Routine.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    });
+
+    res.status(200).json(newRoutine);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 module.exports = router;
