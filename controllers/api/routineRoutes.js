@@ -18,4 +18,17 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET ONE request
+// api/routines/:id
+router.get("/:id", async (req, res) => {
+  try {
+    // findByPk for finding your pick by primary key (set to req.params.id here)
+    const routineData = await Routine.findByPk(req.params.id);
+    console.log(routineData);
+    res.render("routine", routineData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
