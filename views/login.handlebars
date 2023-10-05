@@ -1,31 +1,39 @@
 <h2>Login</h2>
+
 <div class="row">
-  <form class="form login-form col-6">
-    <div class="form-group">
-      <label for="email-login">Email:</label>
-      <input class="form-input" type="text" id="email-login" />
+
+  <form class="col-6" id="login-form">
+
+    <div class="mb-3">
+      <label for="email-login" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email-login"
+        placeholder="example@gmail.com"
+      />
     </div>
-    <div class="form-group">
-      <label for="password-login">Password:</label>
-      <input class="form-input" type="password" id="password-login" />
+
+    <div class="mb-3">
+      <label for="password-login" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password-login"
+        placeholder="password"
+      />
     </div>
-    <div class="form-group">
-      <button
-        class="btn btn-primary"
-        type="submit"
-        id="login-form"
-      >login</button>
-    </div>
+    <button type="submit" class="btn btn-primary" id="login-form">Sign Up</button>
   </form>
 
-  <form class="col-6">
+  <form class="col-6" id="signUp-submit">
     <div class="mb-3">
       <label for="nameExampleInput" class="form-label">Name</label>
       <input
         type="text"
         class="form-control"
-        id="name-submit"
         placeholder="name"
+        id="name-submit"
       />
     </div>
     <div class="mb-3">
@@ -33,17 +41,17 @@
       <input
         type="email"
         class="form-control"
-        id="email-submit"
         aria-describedby="emailHelp"
+        id="email-submit"
       />
       <div id="emailHelp" class="form-text">We'll never share your email with
         anyone else.</div>
     </div>
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" />
+      <input type="password" class="form-control" id="password-submit" />
     </div>
-    <button type="submit" class="btn btn-primary" id="#signUp-submit">Sign Up</button>
+    <button type="submit" class="btn btn-primary">Sign Up</button>
   </form>
 </div>
 
