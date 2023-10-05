@@ -4,6 +4,7 @@
   {{> exercise-details}}
 {{!-- {{/each}} --}}
 
+
 <div class="search-section d-flex">
 <input
   class="form-control"
@@ -42,3 +43,10 @@
   </ul>
 </div>
 </div>  
+
+<div class="routine-list">
+<h1>My Routine</h1>
+   {{#each exerciseData as |exercise|}}
+    {{> added-exercise}}
+    {{/each}}
+</div>
