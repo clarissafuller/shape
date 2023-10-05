@@ -1,4 +1,26 @@
 [
+<<<<<<< HEAD
+  {
+    "name": "Bicep curl",
+    "muscle": "bicep"
+  },
+  {
+    "name": "Barbell glute bridge",
+    "muscle": "glutes"
+  },
+  {
+    "name": "Single-leg cable hip extension",
+    "muscle": "glutes"
+  },
+  {
+    "name": "Standing Calf Raises",
+    "muscle": "calves"
+  },
+  {
+    "name": "Dumbbell Bench Press",
+    "muscle": "chest"
+  }
+=======
     {
         "name": "Bicep curl",
         "muscle": "bicep"
@@ -19,4 +41,5 @@
         "name": "Dumbbell Bench Press",
         "muscle": "chest"
     }
+>>>>>>> 6c1ceb9bd377892cf316f14db64b718d34b8e89f
 ]
