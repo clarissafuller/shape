@@ -14,33 +14,29 @@ router.post("/search", async (req, res) => {
     }));
     console.log("BodyItems", bodyItems);
 
-    exerciseData = await Exercise.findOne({
+    exerciseData = await Exercise.findAll({
       where: {
         [Op.and]: bodyItems,
       },
     });
-
-    if (!exerciseData) {
+    // //if it doesnt exsist in the database already, send out a fetch request to look for it
+    // didn't get back excercises
+    if (!exerciseData.length) {
       // third party api call
+      // get some from the internet
       const exercise = await getAPIExercises(req.body);
-      console.log(exercise);
+      // add the internet exercises to the database
+      await Exercise.bulkCreate(exercise);
+      // console.log("it made it here");
+      // find all the exercises again
+      exerciseData = await Exercise.findAll();
+      // send back the new result
       res.json(exercise);
       return;
     }
+    //instead of this, it would take the exercises data and add it to the database
     res.json(exerciseData);
-    // const exerciseData = await Exercise.findOne();
-    // const exercise = exerciseData.map((exercise) =>
-    //   exercise.get({ plain: true })
-    // );
-    // //if it doesnt exsist in the database already, send out a fetch request to look for it
-    // if (!exerciseData) {
-
-    // }
     //if it still doesnt exsist, create the workout (save this for later if we have time)
-
-    // res.render("exercise", {
-    //   exercise,
-    //  });
   } catch (err) {
     res.status(500).json(err);
   }
