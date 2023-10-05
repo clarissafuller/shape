@@ -15,9 +15,25 @@ Exercise.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     muscle: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    equipment: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    difficulty: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    instructions: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {
