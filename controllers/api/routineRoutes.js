@@ -46,4 +46,45 @@ router.post("/", async (req, res) => {
   }
 });
 
+// DELETE ONE request
+// api/routines/:id
+// router.delete("/:id", async (req, res) => {
+//   try {
+//     const routineData = await Routine.destroy({
+//       where: {
+//         id: req.params.id,
+//       },
+//     });
+
+//     if (!routineData) {
+//       res.status(404).json({ message: "No routine found with this id!" });
+//       return;
+//     }
+//     const responseMessage = `Routine deleted successfully. Name: ${routine.name}`;
+//     res.status(200).json(responseMessage);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+// DELETE ONE request
+// api/routines/:id
+router.delete("/:id", async (req, res) => {
+  try {
+    const routine = await Routine.findByPk(req.params.id);
+
+    if (!routine) {
+      res.status(404).json("No routine found with this id!");
+      return;
+    }
+
+    await routine.destroy();
+
+    const responseMessage = `Routine deleted successfully. Name: ${routine.name}`;
+    res.status(200).json(responseMessage);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
