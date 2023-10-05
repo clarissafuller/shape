@@ -1,0 +1,66 @@
+{{! cards for exercises with name and description }}
+{{! on reveal a form that takes input }}
+{{! will pull from a controller folder route for getting exercise from database or api }}
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{{exercise}}}</h5>
+    <p class="card-text">{{{muscle}}}</p>
+    <div class="accordion" id="accordionAddRoutine">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+          >
+            Add to routine
+          </button>
+        </h2>
+        <div
+          id="collapseOne"
+          class="accordion-collapse collapse show"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+
+            {{! input form 1 }}
+            <div class="input-group mb-3">
+              <span
+                class="input-group-text"
+                id="inputGroup-sizing-default"
+              >Weight in lbs</span>
+              <input
+                type="text"
+                class="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+              />
+            </div>
+            {{! input form 2 }}
+            <div class="input-group mb-3">
+              <span
+                class="input-group-text"
+                id="inputGroup-sizing-default"
+              >Sets</span>
+              <input
+                type="text"
+                class="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+              />
+            </div>
+            {{! button }}
+            <a href="#" class="btn btn-primary">add to routine</a>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
