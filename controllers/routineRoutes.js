@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Routine, Workout } = require('../models');
+const { Routine, Exercise } = require('../models');
 
 // GET all routines for make-routine page
 router.get('/', async (req, res) => {
@@ -25,7 +25,7 @@ router.get('/routine/:id', async (req, res) => {
     const dbRoutineData = await Routine.findByPk(req.params.id, {
       include: [
         {
-          model: Workout,
+          model: Exercise,
           attributes: [
             'name',
             'muscle',
