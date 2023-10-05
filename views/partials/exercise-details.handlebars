@@ -2,22 +2,25 @@
 {{! on reveal a form that takes input }}
 {{! will pull from a controller folder route for getting exercise from database or api }}
 
-<div class="card" style="width: 18rem;">
+<div
+  class="card text-light bg-dark border border-tertiary-subtle rounded-3"
+  style="width: 18rem;"
+>
   <div class="card-body">
-    <h5 class="card-title">{{{exercise}}}</h5>
-    <p class="card-text">{{{muscle}}}</p>
+    <h3 class="card-title text-center">{{{name}}}</h3>
+    <p class="card-text text-center">targeting: {{{muscle}}}s</p>
     <div class="accordion" id="accordionAddRoutine">
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button
-            class="accordion-button"
+            class="accordion-button text-light bg-dark text-center"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#collapseOne"
             aria-expanded="true"
             aria-controls="collapseOne"
           >
-            Add to routine
+            Add to Routine
           </button>
         </h2>
         <div
@@ -25,17 +28,19 @@
           class="accordion-collapse collapse show"
           data-bs-parent="#accordionExample"
         >
-          <div class="accordion-body">
+          <div
+            class="accordion-body text-secondary-emphasis bg-dark-subtle border border-tertiary-subtle"
+          >
 
             {{! input form 1 }}
             <div class="input-group mb-3">
               <span
-                class="input-group-text"
+                class="input-group-text text-light bg-dark"
                 id="inputGroup-sizing-default"
-              >Weight in lbs</span>
+              >Weight in lbs </span>
               <input
                 type="text"
-                class="form-control"
+                class="form-control bg-secondary"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
               />
@@ -43,18 +48,18 @@
             {{! input form 2 }}
             <div class="input-group mb-3">
               <span
-                class="input-group-text"
+                class="input-group-text text-light bg-dark"
                 id="inputGroup-sizing-default"
-              >Sets</span>
+              ># of Sets</span>
               <input
                 type="text"
-                class="form-control"
+                class="form-control bg-secondary"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
               />
             </div>
             {{! button }}
-            <a href="#" class="btn btn-primary">add to routine</a>
+            <a href="#" class="btn btn-dark">add to routine</a>
 
           </div>
         </div>
