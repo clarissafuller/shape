@@ -1,0 +1,118 @@
+[
+  {
+    "reps": "8",
+    "weight": "20",
+    "sets": "3",
+    "routine_id": 1,
+    "exercise_id": 1
+  },
+  {
+    "reps": "10",
+    "weight": "40",
+    "sets": "3",
+    "routine_id": 1,
+    "exercise_id": 2
+  },
+  {
+    "reps": "3",
+    "weight": "85",
+    "sets": "4",
+    "routine_id": 1,
+    "exercise_id": 2
+  },
+  {
+    "reps": "5",
+    "weight": "100",
+    "sets": "2",
+    "routine_id": 1,
+    "exercise_id": 2
+  },
+
+  {
+    "reps": "6",
+    "weight": "25",
+    "sets": "3",
+    "routine_id": 2,
+    "exercise_id": 1
+  },
+
+  {
+    "reps": "15",
+    "weight": "45",
+    "sets": "4",
+    "routine_id": 2,
+    "exercise_id": 2
+  },
+  {
+    "reps": "3",
+    "weight": "85",
+    "sets": "4",
+    "routine_id": 2,
+    "exercise_id": 2
+  },
+  {
+    "reps": "5",
+    "weight": "100",
+    "sets": "2",
+    "routine_id": 2,
+    "exercise_id": 2
+  },
+
+  {
+    "reps": "6",
+    "weight": "25",
+    "sets": "3",
+    "routine_id": 3,
+    "exercise_id": 1
+  },
+  {
+    "reps": "15",
+    "weight": "45",
+    "sets": "4",
+    "routine_id": 3,
+    "exercise_id": 2
+  },
+  {
+    "reps": "3",
+    "weight": "85",
+    "sets": "4",
+    "routine_id": 3,
+    "exercise_id": 2
+  },
+  {
+    "reps": "5",
+    "weight": "100",
+    "sets": "2",
+    "routine_id": 3,
+    "exercise_id": 2
+  },
+
+  {
+    "reps": "2",
+    "weight": "30",
+    "sets": "3",
+    "routine_id": 4,
+    "exercise_id": 1
+  },
+  {
+    "reps": "10",
+    "weight": "25",
+    "sets": "4",
+    "routine_id": 4,
+    "exercise_id": 2
+  },
+  {
+    "reps": "5",
+    "weight": "80",
+    "sets": "4",
+    "routine_id": 4,
+    "exercise_id": 2
+  },
+  {
+    "reps": "3",
+    "weight": "100",
+    "sets": "2",
+    "routine_id": 4,
+    "exercise_id": 2
+  }
+]

@@ -19,8 +19,11 @@ RoutineExercise.init(
     },
     weight: {
       type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    sets: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-    //   defaultValue: 1 ?? 
     },
     exercise_id: {
       type: DataTypes.INTEGER,
