@@ -32,7 +32,7 @@ Exercise.init(
       allowNull: true,
     },
     instructions: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT("long"),
       allowNull: true,
     },
   },
