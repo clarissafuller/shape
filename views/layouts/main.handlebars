@@ -13,13 +13,13 @@
     />
   </head>
 
-  <body>
-    <header class="display-flex justify-space-between align-center p-2">
-
-    </header>
+  <body class="bg-secondary bg-gradient">
+    <header>
     {{#if logged_in}}
     {{> nav-details}}
     {{/if}}
+    </header>
+
     <main class="container-fluid">
       {{{body}}}
     </main>
