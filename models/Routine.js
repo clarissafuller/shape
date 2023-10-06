@@ -18,6 +18,7 @@ Routine.init(
     is_template: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: false,
     },
   },
   {
