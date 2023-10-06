@@ -14,25 +14,34 @@
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Login!</h2>
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
               <form>
 
                 <div class="form-outline mb-4">
                   <input
-                    type="email"
-                    id="email-login"
+                    type="text"
+                    id="name-submit"
                     class="form-control form-control-lg"
-                    placeholder="email"
+                    placeholder="your name"
+                  />
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input
+                    type="email"
+                    id="email-submit"
+                    class="form-control form-control-lg"
+                    placeholder="your email"
                   />
                 </div>
 
                 <div class="form-outline mb-4">
                   <input
                     type="password"
-                    id="password-login"
+                    id="password-submit"
                     class="form-control form-control-lg"
-                    placeholder="password"
+                    placeholder="your password"
                   />
                 </div>
 
@@ -40,15 +49,16 @@
                   <button
                     type="button"
                     class="btn btn-secondary btn-block btn-lg gradient-custom-4 text-body"
-                    id="login-form"
-                  >login!</button>
+                    id="submit"
+                  >Sign Up!</button>
                 </div>
 
-                <p class="text-center text-muted mt-5 mb-0">Don't already an
+                <p class="text-center text-muted mt-5 mb-0">Have already an
                   account?
-                  <a href="./signup" class="fw-bold text-body"><u>Sign-Up here</u></a></p>
+                  <a href="./login" class="fw-bold text-body"><u>Login here</u></a></p>
 
               </form>
+
             </div>
           </div>
         </div>
@@ -57,4 +67,4 @@
   </div>
 </div>
 
-<script src="/js/login.js"></script>
+<script src="/js/submit.js"></script>
