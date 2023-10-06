@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Routine, Exercise } = require("../models");
+const { Routine, Exercise, RoutineExercise } = require("../models");
 
 // GET all routines for routine page
 router.get("/", async (req, res) => {
@@ -10,9 +10,38 @@ router.get("/", async (req, res) => {
       routine.get({ plain: true })
     );
 
-    res.render("routine", {
-      routines,
+    res.render("routine", { routines });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// routine
+router.get("/myroutines", async (req, res) => {
+  try {
+    const dbRoutineData = await Routine.findAll({
+      include: [
+        {
+          model: Exercise,
+          through: RoutineExercise,
+          // as: "Workout",
+          // attributes: [
+          //   "name",
+          //   "type",
+          //   "muscle",
+          //   "equipment",
+          //   "difficulty",
+          //   "instructions",
+          // ],
+        },
+      ],
     });
+
+    const routines = dbRoutineData.map((routine) =>
+      routine.get({ plain: true })
+    );
+    res.render("myroutines", { routines });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
