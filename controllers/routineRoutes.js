@@ -42,7 +42,7 @@ router.get("/myroutines", async (req, res) => {
       routine.get({ plain: true })
     );
     res.render("myroutines", {
-      routinesroutines,
+      routines,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
