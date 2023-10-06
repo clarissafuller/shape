@@ -45,10 +45,8 @@ router.post("/search", async (req, res) => {
 // GET all exercises
 router.get("/", async (req, res) => {
   try {
-    const exerciseData = await Exercise.findAll({
-      include: [{ model: Routine }],
-    });
-    res.status(exerciseData);
+    const exerciseData = await Exercise.findAll();
+    res.json(exerciseData);
   } catch (err) {
     res.status(500).json(err);
   }

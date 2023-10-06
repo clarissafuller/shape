@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
       routine.get({ plain: true })
     );
 
-    res.render("routine", { routines });
+    res.render("routine", { routines, logged_in: req.session.logged_in });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -41,7 +41,10 @@ router.get("/myroutines", async (req, res) => {
     const routines = dbRoutineData.map((routine) =>
       routine.get({ plain: true })
     );
-    res.render("myroutines", { routines });
+    res.render("myroutines", {
+      routinesroutines,
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
