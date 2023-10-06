@@ -22,50 +22,43 @@
             aria-label="routine date"
             routine date
             />  
-            <button type="button" class="btn btn-light">ADD ROUTINE</button>
+            <button type="button" class="btn btn-light add-routine-button">ADD ROUTINE</button>
             </div>
             
             <div class="col-xl-8 searching">
             <div class="search-section d-flex m-5">
             <input
+            id="search-input"
             class="form-control m-2"
             type="text"
             placeholder="search by name"
             aria-label="search by name"
             Search
             />
-            <button type="button" class="m-2 btn btn-light">Search</button>
+            <button id="search-button" type="button" class="m-2 btn btn-light">Search</button>
 
             <div class="m-2 dropdown">
-            <button
-                class="btn btn-secondary dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-            >
-                Muscle Group
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">abdominal</a></li>
-                <li><a class="dropdown-item" href="#">abductors</a></li>
-                <li><a class="dropdown-item" href="#">adductors</a></li>
-                <li><a class="dropdown-item" href="#">biceps</a></li>
-                <li><a class="dropdown-item" href="#">calves</a></li>
-                <li><a class="dropdown-item" href="#">chest</a></li>
-                <li><a class="dropdown-item" href="#">forearms</a></li>
-                <li><a class="dropdown-item" href="#">glutes</a></li>
-                <li><a class="dropdown-item" href="#">hamstrings</a></li>
-                <li><a class="dropdown-item" href="#">lats</a></li>
-                <li><a class="dropdown-item" href="#">lower back</a></li>
-                <li><a class="dropdown-item" href="#">middle back</a></li>
-                <li><a class="dropdown-item" href="#">neck</a></li>
-                <li><a class="dropdown-item" href="#">quadriceps</a></li>
-                <li><a class="dropdown-item" href="#">traps</a></li>
-                <li><a class="dropdown-item" href="#">triceps</a></li>
-            </ul>
+            <select id="dropdown-input"class="form-select" aria-label="Default select example">
+                <option value="abdominal">abdominal</option>
+                <option value="abductors">abductors</option>
+                <option value="adductors">adductors</option>
+                <option value="biceps">biceps</option>
+                <option value="calves">calves</option>
+                <option value="chest">chest</option>
+                <option value="forearms">forearms</option>
+                <option value="glutes">glutes</option>
+                <option value="hamstrings">hamstrings</option>
+                <option value="lats">lats</option>
+                <option value="lower-back">lower back</option>
+                <option value="middle-back">middle back</option>
+                <option value="neck">neck</option>
+                <option value="quadriceps">quadriceps</option>
+                <option value="traps">traps</option>
+                <option value="triceps">triceps</option>
+            </select>
             </div>
             </div>  
-            <div class="search-cards d-flex flex-wrap justify-content-center">
+            <div id="exercises-container" class="search-cards d-flex flex-wrap justify-content-center">
             {{#each exercises as |exercise|}}
             {{> exercise-details}}
             {{/each}}

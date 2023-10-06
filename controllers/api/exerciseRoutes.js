@@ -7,6 +7,8 @@ const { getAPIExercises } = require("../../utils/helpers");
 //search by exercise
 router.post("/search", async (req, res) => {
   //try to get exercise by name from database
+  console.log("req.body", req.body);
+
   try {
     let exerciseData;
     const bodyItems = Object.keys(req.body).map((key) => ({
@@ -19,6 +21,7 @@ router.post("/search", async (req, res) => {
         [Op.and]: bodyItems,
       },
     });
+
     // //if it doesnt exsist in the database already, send out a fetch request to look for it
     // didn't get back excercises
     if (!exerciseData.length) {
