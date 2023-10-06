@@ -1,18 +1,42 @@
 <div class="d-flex">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-9 searching">
-            <div class="search-section d-flex">
+             <div class="col-xl-4 routine-list d-flex flex-wrap justify-content-center mb-2">
+            <h1 style="height: 100px" class="mt-5">My Routine</h1>
             <input
-            class="form-control"
+            class="form-control m-3"
+            type="text"
+            placeholder="Name Your Routine"
+            aria-label="Name Your Routine"
+            Name Your Routine
+            />
+            <div class="card-list d-flex flex-wrap justify-content-center flex-column">
+            {{#each exercises as |exercise|}}
+                {{> added-exercise}}
+                {{/each}}
+                </div>
+            <input
+            class="form-control m-2"
+            type="text"
+            placeholder="Enter the date for your routine MM/DD/YY"
+            aria-label="routine date"
+            routine date
+            />  
+            <button type="button" class="btn btn-light">ADD ROUTINE</button>
+            </div>
+            
+            <div class="col-xl-8 searching">
+            <div class="search-section d-flex m-5">
+            <input
+            class="form-control m-2"
             type="text"
             placeholder="search by name"
             aria-label="search by name"
             Search
             />
-            <button type="button" class="btn btn-light">Search</button>
+            <button type="button" class="m-2 btn btn-light">Search</button>
 
-            <div class="dropdown">
+            <div class="m-2 dropdown">
             <button
                 class="btn btn-secondary dropdown-toggle"
                 type="button"
@@ -46,29 +70,6 @@
             {{> exercise-details}}
             {{/each}}
             </div>
-            </div>
-            <div class="col-xl-3 routine-list d-flex flex-wrap justify-content-center">
-            <h1 style="height: 100px">My Routine</h1>
-            <input
-            class="form-control"
-            type="text"
-            placeholder="Name Your Routine"
-            aria-label="Name Your Routine"
-            Name Your Routine
-            />
-            <div class="card-list d-flex flex-wrap justify-content-center flex-column">
-            {{#each exercises as |exercise|}}
-                {{> added-exercise}}
-                {{/each}}
-                </div>
-            <input
-            class="form-control"
-            type="text"
-            placeholder="Enter the date for your routine MM/DD/YY"
-            aria-label="routine date"
-            routine date
-            />  
-            <button type="button" class="btn btn-light">ADD ROUTINE</button>
             </div>
         </div>
     </div>
