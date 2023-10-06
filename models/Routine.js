@@ -20,14 +20,6 @@ Routine.init(
       allowNull: false,
       defaultValue: false,
     },
-    exercise_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "exercise",
-        key: "id",
-        unique: false,
-      },
-    },
   },
   {
     sequelize,
