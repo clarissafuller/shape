@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Exercise } = require("../models");
+const { User, Exercise, Routine } = require("../models");
 const withAuth = require("../utils/auth");
 
 // Prevent non logged in users from viewing the homepage
@@ -12,8 +12,16 @@ router.get("/", withAuth, async (req, res) => {
 
     const users = userData.map((project) => project.get({ plain: true }));
 
+    //find all the routines
+    const dbRoutineData = await Routine.findAll();
+
+    const routines = dbRoutineData.map((routine) =>
+      routine.get({ plain: true })
+    );
+
     res.render("homepage", {
       users,
+      routines,
       // Pass the logged in flag to the template
       logged_in: req.session.logged_in,
     });
@@ -27,15 +35,16 @@ router.get("/make-routine", withAuth, async (req, res) => {
   try {
     const exerciseData = await Exercise.findAll({});
 
-    const exercises = exerciseData.map((exercise) => 
-    exercise.get({plain: true}));
-  console.log(exercises);
-  res.render("make-routine", {
-    exercises,
-    // Pass the logged in flag to the template
-    logged_in: req.session.logged_in,
-  });
-} catch (err) {
+    const exercises = exerciseData.map((exercise) =>
+      exercise.get({ plain: true })
+    );
+    console.log(exercises);
+    res.render("make-routine", {
+      exercises,
+      // Pass the logged in flag to the template
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }

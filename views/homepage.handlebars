@@ -18,3 +18,149 @@
     >See Previous Workouts</a>
   </div>
 </div>
+
+{{!-- CARDS FOR DAYS OF THE WEEK --}}
+
+<div class="container col-12 col-md-12 bg-secondary">
+<div class="row">
+<div class="d-flex flex-row flex-wrap justify-content-center col-12 m-4 border-dark">
+  {{!-- <dix class="card container " --}}
+  <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+    <div class="card-header bg-dark bg-gradient">MONDAY</div>
+    <div class="card-body bg-gradient text-center">
+      <h5 class="card-title"></h5>
+      <p class="card-text">
+        <div class="routine-data col-md-5">
+          {{!-- {{#if routine}} --}}
+
+          <p>
+        
+          {{#each routines as |routine|}}
+          
+              {{routine.name }}<br>
+          {{/each}}
+          </p>
+
+        </div>
+      </p>
+    </div>
+  </div>
+
+
+  <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+    <div class="card-header bg-dark bg-gradient">TUESDAY</div>
+    <div class="card-body bg-gradient">
+      <h5 class="card-title"></h5>
+      <p class="card-text">
+        <div class="routine-data col-md-5">
+          {{!-- {{#if routine}} --}}
+
+          <p>
+              {{!-- {{#if routine.date=== monday}} --}}
+               {{#each routines as |routine|}}
+             
+              {{routine.name}}
+          {{/each}}
+          </p>
+
+        </div>
+      </p>
+    </div>
+  </div>
+
+
+  <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+    <div class="card-header bg-dark bg-gradient">WEDNESDAY</div>
+    <div class="card-body bg-gradient">
+      <h5 class="card-title"></h5>
+      <p class="card-text">
+        <div class="routine-data col-md-5">
+          {{!-- {{#if routine}} --}}
+
+          <p>
+   
+    {{#each routines as |routine|}}
+          
+              {{routine.name}}
+          {{/each}}
+          </p>
+
+        </div>
+      </p>
+    </div>
+  </div>
+
+
+  <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+    <div class="card-header bg-dark bg-gradient">THURSDAY</div>
+    <div class="card-body bg-gradient">
+      <h5 class="card-title"></h5>
+      <p class="card-text">
+        <div class="routine-data col-md-5">
+          {{!-- {{#if routine}} --}}
+
+          <p>
+      
+  {{#each routines as |routine|}}
+              
+              {{routine.name}}
+          {{/each}}
+          </p>
+
+        </div>
+      </p>
+    </div>
+  </div>
+
+
+  <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+    <div class="card-header bg-dark bg-gradient">FRIDAY</div>
+    <div class="card-body bg-gradient">
+      <h5 class="card-title"></h5>
+      <p class="card-text">
+        <div class="routine-data col-md-5">
+          {{!-- {{#if routine}} --}}
+
+          <p>
+        
+            {{#each routines as |routine|}}
+             
+              {{routine.name}}
+          {{/each}}
+          </p>
+
+        </div>
+      </p>
+    </div>
+  </div>
+
+
+  <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+    <div class="card-header bg-dark bg-gradient">SATURDAY</div>
+    <div class="card-body bg-gradient">
+      <h5 class="card-title"></h5>
+      <p class="card-text">
+        <div class="routine-data col-md-5">
+          {{!-- {{#if routine}} --}}
+
+          <p>
+  
+             {{#each routines as |routine|}}
+          
+              {{routine.name}}
+          {{/each}}
+          </p>
+
+        </div>
+      </p>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+  
+
+{{!-- {{ dayjs().format('MMMM D, YYYY') }}
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4"></script> --}}
