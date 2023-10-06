@@ -30,7 +30,7 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
-//route for make routines page
+// //route for make routines page
 router.get("/make-routine", withAuth, async (req, res) => {
   try {
     const exerciseData = await Exercise.findAll({});
