@@ -1,18 +1,14 @@
-<h1>Make Routines</h1>
-<p>exercise cards render here: </p>
-{{#each exercises as |exercise|}}
-  {{> exercise-details}}
-{{/each}}
-
-
+<div class="d-flex">
+<div class="searching">
 <div class="search-section d-flex">
 <input
   class="form-control"
   type="text"
-  value="Search by name"
+  placeholder="search by name"
   aria-label="search by name"
   Search
 />
+<button type="button" class="btn btn-light">Search</button>
 
 <div class="dropdown">
   <button
@@ -43,10 +39,33 @@
   </ul>
 </div>
 </div>  
-
-<div class="routine-list">
+<div class="search-cards d-flex flex-wrap justify-content-center">
+{{#each exercises as |exercise|}}
+  {{> exercise-details}}
+{{/each}}
+</div>
+</div>
+<div class="routine-list d-flex flex-wrap justify-content-center">
 <h1>My Routine</h1>
-   {{#each exerciseData as |exercise|}}
+<input
+  class="form-control"
+  type="text"
+  placeholder="Name Your Routine"
+  aria-label="Name Your Routine"
+  Name Your Routine
+/>
+<div class="card-list d-flex flex-wrap justify-content-center flex-column">
+   {{#each exercises as |exercise|}}
     {{> added-exercise}}
     {{/each}}
+    </div>
+  <input
+  class="form-control"
+  type="text"
+  placeholder="Enter the date for your routine MM/DD/YY"
+  aria-label="routine date"
+  routine date
+/>  
+<button type="button" class="btn btn-light">ADD ROUTINE</button>
+</div>
 </div>
