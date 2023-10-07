@@ -3,3 +3,11 @@
     color: rgba(255, 255, 255, 1);
     box-shadow: 0 5px 15px rgba(42, 124, 216, 0.8);
 }
+
+* {
+    font-family: 'Oswald', sans-serif;
+}
+a {
+    font-family: 'DM Sans', sans-serif;
+}
+
