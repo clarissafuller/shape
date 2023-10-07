@@ -32,9 +32,13 @@ router.post("/search", async (req, res) => {
       await Exercise.bulkCreate(exercise);
       // console.log("it made it here");
       // find all the exercises again
-      exerciseData = await Exercise.findAll();
+      exerciseData = await Exercise.findAll({
+        where: {
+          [Op.and]: bodyItems,
+        },
+      });
       // send back the new result
-      res.json(exercise);
+      res.json(exerciseData);
       return;
     }
     //instead of this, it would take the exercises data and add it to the database

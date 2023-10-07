@@ -1,9 +1,10 @@
 //DEPENDENCIES
 const setsInput = document.getElementById("sets-input");
 const exerciseId = document.getElementById("exerciseId");
-// const exerciseButton = document.querySelectorAll(".add-exercise");
 const searchButton = document.getElementById("search-button");
-const exerciseButton = document.getElementById("add-exercise");
+let exerciseButton = document.getElementsByClassName("add-exercise");
+//sidebar
+const sidebar = document.getElementById("routine-list");
 
 //DATA
 const addedExercises = [];
@@ -121,11 +122,16 @@ function loadExercises(data) {
   
   </div>`;
   }
+  exerciseButton = document.getElementsByClassName("add-exercise");
+  for (let i = 0; i < exerciseButton.length; i++) {
+    const element = exerciseButton[i];
+    element.addEventListener("click", addExercise);
+  }
 }
 
 const addExercise = function (event) {
   event.preventDefault();
-  console.log("its working");
+  console.log(event);
   //testing how to get data from input
   //   console.log(event.target.parentNode.children[0].children[1].value);
 
@@ -133,37 +139,67 @@ const addExercise = function (event) {
   const weight = event.target.parentNode.children[0].children[1].value.trim();
   console.log(weight);
   const sets = event.target.parentNode.children[1].children[1].value.trim();
+  const target =
+    event.target.parentNode.parentNode.parentNode.parentNode.parentNode
+      .children[1].innerHTML;
 
   //get exercise ID and name
   const exerciseId = event.target.parentNode.children[1].children[2].value;
   const name = event.target.parentNode.children[1].children[3].value;
 
   //add to array of added exercises
-  addedExercises.push({ weight, sets, exerciseId, name });
+  addedExercises.push({ weight, sets, exerciseId, target, name });
+  const currentExercise = { weight, sets, exerciseId, target, name };
   console.log(addedExercises);
 
   // function to render added exercise to sidebar
-  const addToRoutine = (addedExercises) => {
-    const exerciseCards = addedExercises.forEach(function (exercises) {
-      const exerciseName = exercises.name;
-      const exerciseWeight = exercises.weight;
-      const exerciseSets = exercises.sets;
+  const addToRoutine = (currentExercise) => {
+    const exerciseCards = [];
 
-      const cardContent = `<div class="card-body">
-  <h3 class="card-title text-center">${exerciseName}</h3>
-  <p text-center>${exerciseWeight}, ${exerciseSets}</p>
-  </div>`;
-      //meh????
-      return cardContent;
-    });
+    const exerciseName = currentExercise.name;
+    const exerciseWeight = currentExercise.weight;
+    const exerciseSets = currentExercise.sets;
+    const exerciseTarget = currentExercise.target;
+
+    const cardContent = `
+    <div class="d-flex flex-column justify-content-center bg-dark border border-tertiary-subtle rounded-3 my-2">
+      <h3 class="text-light text-center mt-2">${exerciseName}</h3>
+      <p class="text-light text-center">${exerciseTarget}</p>
+      <div class="d-flex justify-content-center">
+        <div class="input-group my-2 self-align-center" style="width: 75%;">
+          <span
+            class="input-group-text text-light bg-dark">
+            Weight in lbs: </span>
+            <p class="form-control bg-secondary" id="sidebar-p"> ${exerciseWeight} </p>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="input-group my-2 self-align-center" style="width: 75%;">
+          <span
+            class="input-group-text text-light bg-dark">
+            Sets: </span>
+            <p class="form-control bg-secondary" id="sidebar-p"> ${exerciseSets} </p>
+        </div>
+      </div>
+    </div>`;
+    //meh????
+    exerciseCards.push(cardContent);
+
+    for (const obj of exerciseCards) {
+      const card = document.createElement("div");
+      card.innerHTML = obj;
+      sidebar.appendChild(card);
+    }
   };
+  addToRoutine(currentExercise);
 };
 
 //USER INTERACTIONS
 searchButton.addEventListener("click", getExercises);
 
-exerciseButton.addEventListener("click", console.log("blahhh"));
-// for (let i = 0; i < exerciseButton.length; i++) {
-//   const element = exerciseButton[i];
-//   element.addEventListener("click", console.log("its working"), addExercise);
-// }
+// exerciseButton.addEventListener("click", addExercise);
+
+for (let i = 0; i < exerciseButton.length; i++) {
+  const element = exerciseButton[i];
+  element.addEventListener("click", addExercise);
+}
