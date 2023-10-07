@@ -16,6 +16,18 @@
           placeholder="Enter the date for your routine MM/DD/YY"
           aria-label="routine date"
         />
+        <input
+          class="form-control my-2"
+          type="text"
+          placeholder="Enter workout start time"
+          aria-label="routine date"
+        />
+        <input
+          class="form-control my-2"
+          type="text"
+          placeholder="Enter workout end time"
+          aria-label="routine date"
+        />
         <button type="button" class="btn btn-light add-routine-button">ADD
           ROUTINE</button>
       </div>
@@ -64,9 +76,9 @@
           id="exercises-container"
           class="search-cards d-flex flex-wrap justify-content-center"
         >
-          {{!-- {{#each exercises as |exercise|}}
+        {{#each exercises as |exercise|}}
         {{> exercise-details}}
-        {{/each}} --}}
+        {{/each}}
         </div>
       </div>
     </div>
