@@ -4,13 +4,13 @@ const Routine = require("./Routine");
 const RoutineExercise = require("./Routine-exercise");
 
 User.hasMany(Routine, {
-    foreignKey: 'routine_id',
-    // onDelete: 'CASCADE'
-  });
+  foreignKey: "routine_id",
+  // onDelete: 'CASCADE'
+});
 
-  Routine.belongsTo(User, {
-    foreignKey: 'user_id'
-  });
+Routine.belongsTo(User, {
+  foreignKey: "user_id",
+});
 
 Exercise.belongsToMany(Routine, {
   // Define the third table needed to store the foreign keys
@@ -19,7 +19,7 @@ Exercise.belongsToMany(Routine, {
     unique: false,
   },
   // Define an alias for when data is retrieved
-//   as: "exercise-routine",
+  //   as: "exercise-routine",
 });
 
 Routine.belongsToMany(Exercise, {
@@ -29,7 +29,7 @@ Routine.belongsToMany(Exercise, {
     unique: false,
   },
   // Define an alias for when data is retrieved
-//   as: "routine-exercise",
+  //   as: "routine-exercise",
 });
 
 module.exports = { User, Exercise, Routine, RoutineExercise };
