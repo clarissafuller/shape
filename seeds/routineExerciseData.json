@@ -10,22 +10,22 @@
     "reps": "10",
     "weight": "40",
     "sets": "3",
-    "routine_id": 1,
+    "routine_id": 2,
     "exercise_id": 2
   },
   {
     "reps": "3",
     "weight": "85",
     "sets": "4",
-    "routine_id": 1,
-    "exercise_id": 2
+    "routine_id": 3,
+    "exercise_id": 5
   },
   {
     "reps": "5",
     "weight": "100",
     "sets": "2",
-    "routine_id": 1,
-    "exercise_id": 2
+    "routine_id": 4,
+    "exercise_id": 4
   },
 
   {
@@ -33,7 +33,7 @@
     "weight": "25",
     "sets": "3",
     "routine_id": 2,
-    "exercise_id": 1
+    "exercise_id": 6
   },
 
   {
@@ -41,14 +41,14 @@
     "weight": "45",
     "sets": "4",
     "routine_id": 2,
-    "exercise_id": 2
+    "exercise_id": 8
   },
   {
     "reps": "3",
     "weight": "85",
     "sets": "4",
     "routine_id": 2,
-    "exercise_id": 2
+    "exercise_id": 9
   },
   {
     "reps": "5",

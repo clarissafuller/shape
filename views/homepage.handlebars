@@ -1,9 +1,12 @@
-<div class="d-flex flex-row justify-content-around mt-5">
+<div class="d-flex flex-row justify-content-around m-5">
   <div class="d-flex col-4 bg-dark bg-gradient" style="height:100px">
     <a href="./make-routine" class="mx-auto text-center align-self-center">
       <button class="btn btn-secondary active">Create a New Workout</button>
     </a>
   </div>
+   <div>
+      <i class="fa-solid fa-dumbbell fa-spin fa-spin-reverse fa-2xl" style="color: #ffffff;"></i>
+    </div>
   <div class="d-flex col-4 bg-dark bg-gradient" style="height:100px">
     <a href="./routine" class="mx-auto text-center align-self-center">
       <button class="btn btn-secondary active">See Previous Workouts</button>
@@ -11,7 +14,210 @@
   </div>
 </div>
 
-{{! adds calender link }}
+{{!-- {{! adds calender link }}
 <div class="m-5" id="calendar"></div>
 
-<script src="/js/calendar.js"></script>
+<script src="/js/calendar.js"></script> --}}
+
+{{! CARDS FOR DAYS OF THE WEEK }}
+{{! container }}
+<div class="row">
+  <div
+    class="container bg-secondary d-flex flex-row flex-wrap flex-md-wrap flex-sm-wrap flex-lg-nowrap flex-sm-shrink-1 justify-space-between border-dark grid gap-3"
+  >
+
+    {{! card 1 }}
+    <div class="card text-white bg-dark" style="max-width: 18rem;">
+      <div class="card-header bg-dark bg-gradient fs-3"> SUNDAY </div>
+      <div class="card-body bg-gradient">
+        <h5 class="card-title"></h5>
+        <p class="card-text">
+          <div class="routine-data">
+            {{!-- {{#if routine}} --}}
+
+            {{#each routines as |routine|}}
+              {{!-- {{#if routine.date === }} --}}
+
+              <a
+                href="../routine"
+                class="btn btn-secondary bg-gradient btn-lg active m-3"
+                role="button"
+                aria-pressed="true"
+              >
+                {{routine.name}}
+              </a>
+
+              {{!-- {{/if}} --}}
+            {{/each}}
+
+          </div>
+        </p>
+      </div>
+    </div>
+
+     <div class="card text-white bg-dark" style="max-width: 18rem;">
+      <div class="card-header bg-dark bg-gradient fs-3">MONDAY</div>
+      <div class="card-body bg-gradient">
+        <h5 class="card-title"></h5>
+        <p class="card-text">
+          <div class="routine-data">
+            {{!-- {{#if routine}} --}}
+
+            {{#each routines as |routine|}}
+              {{!-- {{#if routine.date === }} --}}
+
+              <a
+                href="../routine"
+                class="btn btn-secondary bg-gradient btn-lg active m-3"
+                role="button"
+                aria-pressed="true"
+              >
+                {{routine.name}}
+              </a>
+
+              {{!-- {{/if}} --}}
+            {{/each}}
+
+          </div>
+        </p>
+      </div>
+    </div>
+      <div class="card text-white bg-dark" style="max-width: 18rem;">
+      <div class="card-header bg-dark bg-gradient fs-3">TUESDAY</div>
+      <div class="card-body bg-gradient">
+        <h5 class="card-title"></h5>
+        <p class="card-text">
+          <div class="routine-data">
+            {{!-- {{#if routine}} --}}
+
+            {{#each routines as |routine|}}
+              {{!-- {{#if routine.date === }} --}}
+
+              <a
+                href="../routine"
+                class="btn btn-secondary bg-gradient btn-lg active m-3"
+                role="button"
+                aria-pressed="true"
+              >
+                {{routine.name}}
+              </a>
+
+              {{!-- {{/if}} --}}
+            {{/each}}
+
+          </div>
+        </p>
+      </div>
+    </div>
+      <div class="card text-white bg-dark" style="max-width: 18rem;">
+      <div class="card-header bg-dark bg-gradient fs-3">WEDNESDAY</div>
+      <div class="card-body bg-gradient">
+        <h5 class="card-title"></h5>
+        <p class="card-text">
+          <div class="routine-data">
+            {{!-- {{#if routine}} --}}
+
+            {{#each routines as |routine|}}
+              {{!-- {{#if routine.date === }} --}}
+
+              <a
+                href="../routine"
+                class="btn btn-secondary bg-gradient btn-lg active m-3"
+                role="button"
+                aria-pressed="true"
+              >
+                {{routine.name}}
+              </a>
+
+              {{!-- {{/if}} --}}
+            {{/each}}
+
+          </div>
+        </p>
+      </div>
+    </div>
+      <div class="card text-white bg-dark" style="max-width: 18rem;">
+      <div class="card-header bg-dark bg-gradient fs-3">THURSDAY</div>
+      <div class="card-body bg-gradient">
+        <h5 class="card-title"></h5>
+        <p class="card-text">
+          <div class="routine-data">
+            {{!-- {{#if routine}} --}}
+
+            {{#each routines as |routine|}}
+              {{!-- {{#if routine.date === }} --}}
+
+              <a
+                href="../routine"
+                class="btn btn-secondary bg-gradient btn-lg active m-3"
+                role="button"
+                aria-pressed="true"
+              >
+                {{routine.name}}
+              </a>
+
+              {{!-- {{/if}} --}}
+            {{/each}}
+
+          </div>
+        </p>
+      </div>
+    </div>
+      <div class="card text-white bg-dark" style="max-width: 18rem;">
+      <div class="card-header bg-dark bg-gradient fs-3">FRIDAY</div>
+      <div class="card-body bg-gradient">
+        <h5 class="card-title"></h5>
+        <p class="card-text">
+          <div class="routine-data">
+            {{!-- {{#if routine}} --}}
+
+            {{#each routines as |routine|}}
+              {{!-- {{#if routine.date === }} --}}
+
+              <a
+                href="../routine"
+                class="btn btn-secondary bg-gradient btn-lg active m-3"
+                role="button"
+                aria-pressed="true"
+              >
+                {{routine.name}}
+              </a>
+
+              {{!-- {{/if}} --}}
+            {{/each}}
+
+          </div>
+        </p>
+      </div>
+    </div>
+      <div class="card text-white bg-dark" style="max-width: 18rem;">
+      <div class="card-header bg-dark bg-gradient fs-3">SATURDAY</div>
+      <div class="card-body bg-gradient">
+        <h5 class="card-title"></h5>
+        <p class="card-text">
+          <div class="routine-data">
+            {{!-- {{#if routine}} --}}
+
+            {{#each routines as |routine|}}
+              {{!-- {{#if routine.date === }} --}}
+
+              <a
+                href="../routine"
+                class="btn btn-secondary bg-gradient btn-lg active m-3"
+                role="button"
+                aria-pressed="true"
+              >
+                {{routine.name}}
+              </a>
+
+              {{!-- {{/if}} --}}
+            {{/each}}
+
+          </div>
+        </p>
+      </div>
+    </div>
+
+
+{{!-- {{ dayjs().format('MMMM D, YYYY') }}
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4"></script> --}}

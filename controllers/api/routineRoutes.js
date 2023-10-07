@@ -1,15 +1,32 @@
 const router = require("express").Router();
-const Routine = require("../../models/Routine.js");
+
+const { Routine, Exercise, RoutineExercise } = require("../../models");
 
 // GET ALL request
 // api/routines
 router.get("/", async (req, res) => {
   try {
-    const routineData = await Routine.findAll({});
+    const routineData = await Routine.findAll({
+      include: [
+        {
+          model: Exercise,
+          through: RoutineExercise,
+          // as: "Workout",
+          // attributes: [
+          //   "name",
+          //   "type",
+          //   "muscle",
+          //   "equipment",
+          //   "difficulty",
+          //   "instructions",
+          // ],
+        },
+      ],
+    });
 
     const routines = routineData.map((routine) => routine.get({ plain: true }));
     // ***** May need to swap out the render page ******
-    res.render("routine", { routines });
+    res.status(200).json(routines);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -23,7 +40,7 @@ router.get("/:id", async (req, res) => {
     // findByPk for finding your pick by primary key (set to req.params.id here)
     const routineData = await Routine.findByPk(req.params.id);
     console.log(routineData);
-    res.render("routine", { routineData });
+    res.status(200).json(routineData);
   } catch (err) {
     res.status(500).json(err);
   }
