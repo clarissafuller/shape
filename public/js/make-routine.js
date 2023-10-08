@@ -41,7 +41,7 @@ function getExercises() {
 function loadExercises(data) {
   const container = document.getElementById("exercises-container");
   container.innerHTML = "";
-  console.log(data);
+  let id = 0;
   for (const exercise of data) {
     container.innerHTML += `<div class="m-1">
     <div
@@ -58,15 +58,15 @@ function loadExercises(data) {
                 class="accordion-button text-light bg-dark text-center"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#collapse0"
+                data-bs-target="#collapse${id}"
                 aria-expanded="true"
-                aria-controls="collapse0"
+                aria-controls="collapse${id}"
               >
                 Add to Routine
               </button>
             </h2>
             <div
-              id="collapse0"
+              id="collapse${id}"
               class="accordion-collapse collapse"
               data-bs-parent="#accordionExample"
             >
@@ -109,6 +109,18 @@ function loadExercises(data) {
                     aria-label="exercise title"
                   />
                 </div>
+                <div class="input-group mb-3">
+                  <span
+                    class="input-group-text text-light bg-dark"
+                    id="inputGroup-sizing-default weight-input"
+                  ># of reps </span>
+                  <input
+                    type="text"
+                    class="form-control bg-secondary"
+                    aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default"
+                  />
+                </div>
                 <a href="#" class="btn btn-dark add-exercise">add to routine</a>
   
               </div>
@@ -121,6 +133,8 @@ function loadExercises(data) {
     </div>
   
   </div>`;
+
+    id++;
   }
   exerciseButton = document.getElementsByClassName("add-exercise");
   for (let i = 0; i < exerciseButton.length; i++) {
@@ -139,6 +153,7 @@ const addExercise = function (event) {
   const weight = event.target.parentNode.children[0].children[1].value.trim();
   console.log(weight);
   const sets = event.target.parentNode.children[1].children[1].value.trim();
+  const reps = event.target.parentNode.children[2].children[1].value.trim();
   const target =
     event.target.parentNode.parentNode.parentNode.parentNode.parentNode
       .children[1].innerHTML;
@@ -148,8 +163,8 @@ const addExercise = function (event) {
   const name = event.target.parentNode.children[1].children[3].value;
 
   //add to array of added exercises
-  addedExercises.push({ weight, sets, exerciseId, target, name });
-  const currentExercise = { weight, sets, exerciseId, target, name };
+  addedExercises.push({ weight, sets, reps, target, exerciseId, name });
+  const currentExercise = { weight, sets, reps, target, exerciseId, name };
   console.log(addedExercises);
 
   // function to render added exercise to sidebar
@@ -160,6 +175,7 @@ const addExercise = function (event) {
     const exerciseWeight = currentExercise.weight;
     const exerciseSets = currentExercise.sets;
     const exerciseTarget = currentExercise.target;
+    const exerciseReps = currentExercise.reps;
 
     const cardContent = `
     <div class="d-flex flex-column justify-content-center bg-dark border border-tertiary-subtle rounded-3 my-2">
@@ -179,6 +195,14 @@ const addExercise = function (event) {
             class="input-group-text text-light bg-dark">
             Sets: </span>
             <p class="form-control bg-secondary" id="sidebar-p"> ${exerciseSets} </p>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="input-group my-2 mb-4 self-align-center" style="width: 75%;">
+          <span
+            class="input-group-text text-light bg-dark">
+            Reps: </span>
+            <p class="form-control bg-secondary" id="sidebar-p"> ${exerciseReps} </p>
         </div>
       </div>
     </div>`;
