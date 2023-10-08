@@ -46,6 +46,17 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+//GET ONE by date (for calendar)
+router.get("/:start_date", async (req, res) => {
+  try {
+    const routineData = await Routine.findByPk(req.params.start_date);
+    console.log(routineData);
+    res.status(200).json(routineData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // POST ONE request (create)
 // api/routines
 router.post("/", async (req, res) => {
