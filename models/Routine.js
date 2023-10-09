@@ -20,6 +20,9 @@ Routine.init(
       allowNull: false,
       defaultValue: false,
     },
+    day_of_week: {
+      type: DataTypes.STRING,
+    },
   },
   {
     sequelize,
