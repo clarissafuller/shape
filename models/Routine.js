@@ -14,11 +14,17 @@ Routine.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: "Untitled Routine",
     },
     is_template: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+    },
+    day_of_week: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "Monday",
     },
   },
   {
