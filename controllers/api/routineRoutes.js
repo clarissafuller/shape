@@ -72,6 +72,29 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Updates routine based on its id
+router.put("/:id", (req, res) => {
+  // Calls the update method on the Book model
+  Routine.update(
+    {
+      // All the fields you can update and the data attached to the request body.
+      name: req.body.name,
+      day_of_week: req.body.day_of_week,
+    },
+    {
+      // Gets the routine based on the id given in the request parameters
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+    .then((updatedRoutine) => {
+      // Sends the updated routine as a json response
+      res.json(updatedRoutine);
+    })
+    .catch((err) => res.json(err));
+});
+
 // DELETE ONE request
 // api/routines/:id
 router.delete("/:id", async (req, res) => {
