@@ -2,32 +2,38 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xl-4">
-        <h1 class="text-center mt-5">My Routine</h1>
+        <h1 class="text-center mt-5">My Routine - default name {{{routine.name}}}</h1>
         <div class="container" id="routine-list"></div>
+        <h4 class="text-dark ">Rename your new routine:</h4>
         <input
           class="form-control my-2"
+          id="name-input"
           type="text"
-          placeholder="Name Your Routine"
+          placeholder="New Routine Name"
           aria-label="Name Your Routine"
         />
-        <input
-          class="form-control my-2"
-          type="text"
-          placeholder="Enter the date for your routine MM/DD/YY"
-          aria-label="routine date"
-        />
-        <input
-          class="form-control my-2"
-          type="text"
-          placeholder="Enter workout start time"
-          aria-label="routine date"
-        />
-        <input
-          class="form-control my-2"
-          type="text"
-          placeholder="Enter workout end time"
-          aria-label="routine date"
-        />
+        <h2 id="new-name"></h2>
+         <button type="button" class="btn btn-dark text-light bg-gradient" id="update-name-button">UPDATE
+          NAME</button>
+
+<h4 class="text-dark ">Choose a day of the week for this routine:</h4>
+       <div class="m-2 dropdown">
+            <select
+              id="dropdown-input"
+              class="form-select"
+              aria-label="Select day of week"
+            >
+              <option value="sunday">Sunday</option>
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
+              <option value="saturday">Saturday</option>
+            
+            </select>
+          </div>
+       
         <button type="button" class="btn btn-light add-routine-button">ADD
           ROUTINE</button>
       </div>
