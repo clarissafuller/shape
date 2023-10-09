@@ -3,6 +3,8 @@ const setsInput = document.getElementById("sets-input");
 const exerciseId = document.getElementById("exerciseId");
 const searchButton = document.getElementById("search-button");
 let exerciseButton = document.getElementsByClassName("add-exercise");
+const updateNameButton = document.getElementById("update-name-button");
+
 //sidebar
 const sidebar = document.getElementById("routine-list");
 
@@ -218,8 +220,37 @@ const addExercise = function (event) {
   addToRoutine(currentExercise);
 };
 
+//function to take new form input data and add to routine via PUT route
+const updateRoutineName = async function (event) {
+  event.preventDefault();
+  console.log(event);
+    const newNameInput = document.getElementById("name-input").value.trim();
+  
+
+    await fetch("/api/routines/:id", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({name: newNameInput}),
+    })
+      .then(function (response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.error(response.statusText);
+          return null;
+        }
+      })
+      .then((data) => document.querySelector("#new-name").innerHTML = `successfully renamed to: ${data.name}` );
+
+  console.log(newNameInput);
+}
+
 //USER INTERACTIONS
 searchButton.addEventListener("click", getExercises);
+updateNameButton.addEventListener("click", updateRoutineName);
+
 
 // exerciseButton.addEventListener("click", addExercise);
 
