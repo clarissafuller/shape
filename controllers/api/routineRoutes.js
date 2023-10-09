@@ -49,11 +49,32 @@ router.get("/:id", async (req, res) => {
 //GET ONE by date (for calendar)
 router.get("/:start_date", async (req, res) => {
   try {
-    const routineData = await Routine.findByPk(req.params.start_date);
+    const routineData = await Routine.findAll(req.params.start_date, {
+      include: [
+        { model: Exercise, through: RoutineExercise, as: "routine_exercise" },
+      ],
+    });
     console.log(routineData);
     res.status(200).json(routineData);
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+//POST one by date
+router.post("/:start_date", async (req, res) => {
+  try {
+    let routineData;
+    routineData = await RoutineExercise.findAll({
+      where: {
+        start_date: req.body,
+      },
+    });
+    const routine = routineData.map((routine) => routine.get({ plain: true }));
+    await RoutineExercise.bulkCreate(routine);
+    res.status(200).json(routine);
+  } catch (err) {
+    res.status(400).json(err);
   }
 });
 

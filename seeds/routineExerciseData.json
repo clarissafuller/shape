@@ -4,28 +4,32 @@
     "weight": "20",
     "sets": "3",
     "routine_id": 1,
-    "exercise_id": 1
+    "exercise_id": 1,
+    "start_date": "10/10/2023"
   },
   {
     "reps": "10",
     "weight": "40",
     "sets": "3",
     "routine_id": 2,
-    "exercise_id": 2
+    "exercise_id": 2,
+    "start_date": "10/9/2023"
   },
   {
     "reps": "3",
     "weight": "85",
     "sets": "4",
     "routine_id": 3,
-    "exercise_id": 5
+    "exercise_id": 5,
+    "start_date": "10/8/2023"
   },
   {
     "reps": "5",
     "weight": "100",
     "sets": "2",
     "routine_id": 4,
-    "exercise_id": 4
+    "exercise_id": 4,
+    "start_date": "10/7/2023"
   },
 
   {
@@ -33,7 +37,8 @@
     "weight": "25",
     "sets": "3",
     "routine_id": 2,
-    "exercise_id": 6
+    "exercise_id": 6,
+    "start_date": "10/10/2023"
   },
 
   {
@@ -41,21 +46,24 @@
     "weight": "45",
     "sets": "4",
     "routine_id": 2,
-    "exercise_id": 8
+    "exercise_id": 8,
+    "start_date": "10/10/2023"
   },
   {
     "reps": "3",
     "weight": "85",
     "sets": "4",
     "routine_id": 2,
-    "exercise_id": 9
+    "exercise_id": 9,
+    "start_date": "10/10/2023"
   },
   {
     "reps": "5",
     "weight": "100",
     "sets": "2",
     "routine_id": 2,
-    "exercise_id": 2
+    "exercise_id": 2,
+    "start_date": "10/1/2023"
   },
 
   {

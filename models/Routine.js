@@ -13,7 +13,7 @@ Routine.init(
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     is_template: {
       type: DataTypes.BOOLEAN,

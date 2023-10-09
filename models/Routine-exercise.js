@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 
 // create our routine specific exercise model
 class RoutineExercise extends Model {}
@@ -11,11 +11,11 @@ RoutineExercise.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     reps: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     weight: {
       type: DataTypes.INTEGER,
@@ -28,26 +28,30 @@ RoutineExercise.init(
     exercise_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'exercise',
-        key: 'id',
-        unique: false
-      }
+        model: "exercise",
+        key: "id",
+        unique: false,
+      },
     },
     routine_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'routine',
-        key: 'id',
-        unique: false
-      }
-    }
+        model: "routine",
+        key: "id",
+        unique: false,
+      },
+    },
+    start_date: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'routine_exercise'
+    modelName: "routine_exercise",
   }
 );
 
