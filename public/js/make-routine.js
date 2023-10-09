@@ -3,6 +3,7 @@ const setsInput = document.getElementById("sets-input");
 const exerciseId = document.getElementById("exerciseId");
 const searchButton = document.getElementById("search-button");
 let exerciseButton = document.getElementsByClassName("add-exercise");
+
 //sidebar
 const sidebar = document.getElementById("routine-list");
 
@@ -205,6 +206,8 @@ const addExercise = function (event) {
             <p class="form-control bg-secondary" id="sidebar-p"> ${exerciseReps} </p>
         </div>
       </div>
+      <button type="button" class="btn btn-light remove-exercise-button">REMOVE
+      EXERCISE</button>
     </div>`;
     //meh????
     exerciseCards.push(cardContent);
@@ -214,8 +217,15 @@ const addExercise = function (event) {
       card.innerHTML = obj;
       sidebar.appendChild(card);
     }
+  
   };
+
   addToRoutine(currentExercise);
+};
+
+const removeExercise = function (event) {
+  event.preventDefault();
+  console.log(event);
 };
 
 //USER INTERACTIONS
