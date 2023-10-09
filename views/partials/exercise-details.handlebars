@@ -8,7 +8,7 @@
     style="width: 18rem;"
   >
     <div class="card-body">
-      <h3 class="card-title text-center">{{{name}}}</h3>
+      <h3 class="card-title text-center exercise-name">{{{name}}}</h3>
       <p class="card-text text-center">targeting: {{{muscle}}}</p>
       <div class="accordion" id="accordionAddRoutine">
         <div class="accordion-item">
@@ -69,6 +69,12 @@
                 <input
                   type="hidden"
                   value="{{name}}"
+                  id="exerciseName"
+                  aria-label="exercise title"
+                />
+                <input
+                  type="hidden"
+                  value="{{instructions}}"
                   id="exerciseName"
                   aria-label="exercise title"
                 />

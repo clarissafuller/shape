@@ -2,6 +2,9 @@ const User = require("./User");
 const Exercise = require("./Exercise");
 const Routine = require("./Routine");
 const RoutineExercise = require("./Routine-exercise");
+const Cursed = require("./Cursed");
+const Routine2 = require("./Routines");
+const NewRoutine = require("./NewRoutines");
 
 User.hasMany(Routine, {
   foreignKey: "routine_id",
@@ -32,4 +35,28 @@ Routine.belongsToMany(Exercise, {
   //   as: "routine-exercise",
 });
 
-module.exports = { User, Exercise, Routine, RoutineExercise };
+Cursed.belongsToMany(Routine2, {
+  // Define the third table needed to store the foreign keys
+  through: {
+    model: NewRoutine,
+    unique: false,
+  },
+});
+
+Routine2.belongsToMany(Cursed, {
+  // Define the third table needed to store the foreign keys
+  through: {
+    model: NewRoutine,
+    unique: false,
+  },
+});
+
+module.exports = {
+  User,
+  Exercise,
+  Routine,
+  RoutineExercise,
+  Cursed,
+  Routine2,
+  NewRoutine,
+};

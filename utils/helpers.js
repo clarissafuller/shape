@@ -32,4 +32,5 @@ async function getAPIExercises(searchTerms) {
     res.status(500).json(err);
   }
 }
+
 module.exports = { getAPIExercises };

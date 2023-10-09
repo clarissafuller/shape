@@ -1,25 +1,5 @@
 [
   {
-    "name": "Bicep curl",
-    "muscle": "bicep"
-  },
-  {
-    "name": "Barbell glute bridge",
-    "muscle": "glutes"
-  },
-  {
-    "name": "Single-leg cable hip extension",
-    "muscle": "glutes"
-  },
-  {
-    "name": "Standing Calf Raises",
-    "muscle": "calves"
-  },
-  {
-    "name": "Dumbbell Bench Press",
-    "muscle": "chest"
-  },
-  {
     "name": "Incline Hammer Curls",
     "type": "strength",
     "muscle": "biceps",

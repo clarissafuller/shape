@@ -1,6 +1,14 @@
+//dependencies
 const router = require("express").Router();
 
-const { Routine, Exercise, RoutineExercise } = require("../../models");
+const {
+  Routine,
+  Exercise,
+  RoutineExercise,
+  Routine2,
+  Cursed,
+  NewRoutine,
+} = require("../../models");
 
 // GET ALL request
 // api/routines
@@ -48,39 +56,45 @@ router.get("/:id", async (req, res) => {
 
 // POST ONE request (create)
 // api/routines
-router.post("/", async (req, res) => {
+router.post("/add", async (req, res) => {
   try {
-    const newRoutine = await Routine.create({
-      ...req.body,
-      user_id: req.session.user_id,
-    });
+    const { name, start_date, start_time, end_time } = req.body;
 
+    const info = {
+      routine_id: id,
+      name,
+      start_date,
+      start_time,
+      end_time,
+    };
+    const newRoutine = await Routine.create(info);
+    // .json(newRoutine);
+    console.log(newRoutine);
     res.status(200).json(newRoutine);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-// DELETE ONE request
-// api/routines/:id
-// router.delete("/:id", async (req, res) => {
-//   try {
-//     const routineData = await Routine.destroy({
-//       where: {
-//         id: req.params.id,
-//       },
-//     });
+router.post("/addroutine", async (req, res) => {
+  try {
+    const { routine_id, name, start_date, start_time, end_time } = req.body;
 
-//     if (!routineData) {
-//       res.status(404).json({ message: "No routine found with this id!" });
-//       return;
-//     }
-//     const responseMessage = `Routine deleted successfully. Name: ${routine.name}`;
-//     res.status(200).json(responseMessage);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    const info = {
+      routine_id,
+      name,
+      start_date,
+      start_time,
+      end_time,
+    };
+    const newRoutine = await Routine2.create(info);
+    // .json(newRoutine);
+    console.log(newRoutine);
+    res.status(200).json(newRoutine);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
 
 // DELETE ONE request
 // api/routines/:id

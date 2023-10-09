@@ -3,6 +3,26 @@ const router = require("express").Router();
 const { Op } = require("sequelize");
 const { Exercise, Routine } = require("../../models");
 const { getAPIExercises } = require("../../utils/helpers");
+const Cursed = require("../../models/Cursed");
+
+router.post("/searchname", async (req, res) => {
+  try {
+    const exercise = await fetch(
+      `https://api.api-ninjas.com/v1/exercises?muscle=${req.body.name}`,
+      {
+        method: "GET",
+        headers: {
+          "X-Api-Key": process.env.API_KEY,
+        },
+      }
+    );
+    const exercises = await exercise.json();
+    console.log(typeof req.body.name);
+    res.json(exercises);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
 
 //search by exercise
 router.post("/search", async (req, res) => {
@@ -78,11 +98,24 @@ router.get("/:id", async (req, res) => {
 });
 
 // CREATE an exercise
-router.post("/", async (req, res) => {
+router.post("/add", async (req, res) => {
   try {
-    const exerciseData = await Exercise.create({
-      routine_id: req.body.routine_id,
-    });
+    const { routine_id, weight, sets, reps, target, instructions, name } =
+      req.body;
+
+    const body = {
+      routine_id,
+      name,
+      target,
+      sets,
+      reps,
+      weight,
+      instructions,
+    };
+
+    console.log(body);
+
+    const exerciseData = await Cursed.create(body);
     res.status(200).json(exerciseData);
   } catch (err) {
     res.status(400).json(err);

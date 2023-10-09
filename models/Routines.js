@@ -1,15 +1,20 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Routine extends Model {}
+class Routine2 extends Model {}
 
-Routine.init(
+Routine2.init(
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
+    },
+    routine_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: false,
     },
     name: {
       type: DataTypes.STRING,
@@ -32,8 +37,8 @@ Routine.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "routine",
+    modelName: "routine2",
   }
 );
 
-module.exports = Routine;
+module.exports = Routine2;

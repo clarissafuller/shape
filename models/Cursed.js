@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Routine extends Model {}
+class Cursed extends Model {}
 
-Routine.init(
+Cursed.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,20 +11,33 @@ Routine.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    routine_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: false,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    start_date: {
+    target: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    start_time: {
+    sets: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    end_time: {
+    reps: {
       type: DataTypes.STRING,
+      allowNull: true,
+    },
+    weight: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    instructions: {
+      type: DataTypes.TEXT("long"),
       allowNull: true,
     },
   },
@@ -32,8 +45,8 @@ Routine.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "routine",
+    modelName: "cursed",
   }
 );
 
-module.exports = Routine;
+module.exports = Cursed;

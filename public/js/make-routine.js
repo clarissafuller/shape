@@ -5,10 +5,15 @@ const searchButton = document.getElementById("search-button");
 let exerciseButton = document.getElementsByClassName("add-exercise");
 //sidebar
 const sidebar = document.getElementById("routine-list");
+const addButton = document.getElementById("add-routine");
 
 //DATA
-const addedExercises = [];
-
+let addedExercises = [];
+let exerciseNames = [];
+//for rotuine id to be added to each exercise pushed
+let id = 1;
+//for weird default value not found bug for sequelize id
+let sequelizeId = 1;
 //FUNCTIONS
 function getExercises() {
   const searchInput = document.getElementById("search-input").value.trim();
@@ -17,8 +22,6 @@ function getExercises() {
   const preparedBody = {};
   if (searchInput.length) preparedBody.name = searchInput;
   if (dropdownInput.length) preparedBody.muscle = dropdownInput;
-
-  console.log(preparedBody);
 
   fetch("/api/exercises/search", {
     method: "POST",
@@ -108,6 +111,12 @@ function loadExercises(data) {
                     id="exerciseName"
                     aria-label="exercise title"
                   />
+                  <input
+                    type="hidden"
+                    value="${exercise.instructions}"
+                    id="exerciseName"
+                    aria-label="exercise title"
+                  />
                 </div>
                 <div class="input-group mb-3">
                   <span
@@ -133,7 +142,7 @@ function loadExercises(data) {
     </div>
   
   </div>`;
-
+    //fixes problem of all dropdowns opening at the same time
     id++;
   }
   exerciseButton = document.getElementsByClassName("add-exercise");
@@ -146,8 +155,6 @@ function loadExercises(data) {
 const addExercise = function (event) {
   event.preventDefault();
   console.log(event);
-  //testing how to get data from input
-  //   console.log(event.target.parentNode.children[0].children[1].value);
 
   //target and trim input data
   const weight = event.target.parentNode.children[0].children[1].value.trim();
@@ -158,14 +165,31 @@ const addExercise = function (event) {
     event.target.parentNode.parentNode.parentNode.parentNode.parentNode
       .children[1].innerHTML;
 
-  //get exercise ID and name
+  //get exercise ID and name and instructions
   const exerciseId = event.target.parentNode.children[1].children[2].value;
   const name = event.target.parentNode.children[1].children[3].value;
+  const instructions = event.target.parentNode.children[1].children[4].value;
+  console.log(instructions);
 
-  //add to array of added exercises
-  addedExercises.push({ weight, sets, reps, target, exerciseId, name });
-  const currentExercise = { weight, sets, reps, target, exerciseId, name };
-  console.log(addedExercises);
+  //add to array of added exercises with routine id
+  addedExercises.push({
+    routine_id: id.toString(),
+    weight: weight,
+    sets: sets,
+    reps: reps,
+    target: target,
+    instructions: instructions,
+    name: name,
+  });
+  const currentExercise = {
+    weight,
+    sets,
+    reps,
+    target,
+    instructions,
+    exerciseId,
+    name,
+  };
 
   // function to render added exercise to sidebar
   const addToRoutine = (currentExercise) => {
@@ -179,14 +203,14 @@ const addExercise = function (event) {
 
     const cardContent = `
     <div class="d-flex flex-column justify-content-center bg-dark border border-tertiary-subtle rounded-3 my-2">
-      <h3 class="text-light text-center mt-2">${exerciseName}</h3>
+      <h3 class="text-light text-center mt-2 exercise-name">${exerciseName}</h3>
       <p class="text-light text-center">${exerciseTarget}</p>
       <div class="d-flex justify-content-center">
         <div class="input-group my-2 self-align-center" style="width: 75%;">
           <span
             class="input-group-text text-light bg-dark">
             Weight in lbs: </span>
-            <p class="form-control bg-secondary" id="sidebar-p"> ${exerciseWeight} </p>
+            <p class="form-control bg-secondary sidebar-p" id="weight-input"> ${exerciseWeight} </p>
         </div>
       </div>
       <div class="d-flex justify-content-center">
@@ -194,7 +218,7 @@ const addExercise = function (event) {
           <span
             class="input-group-text text-light bg-dark">
             Sets: </span>
-            <p class="form-control bg-secondary" id="sidebar-p"> ${exerciseSets} </p>
+            <p class="form-control bg-secondary sidebar-p" id="sets-input"> ${exerciseSets} </p>
         </div>
       </div>
       <div class="d-flex justify-content-center">
@@ -202,28 +226,118 @@ const addExercise = function (event) {
           <span
             class="input-group-text text-light bg-dark">
             Reps: </span>
-            <p class="form-control bg-secondary" id="sidebar-p"> ${exerciseReps} </p>
+            <p class="form-control bg-secondary sidebar-p" id="reps-input"> ${exerciseReps} </p>
         </div>
       </div>
     </div>`;
-    //meh????
+
     exerciseCards.push(cardContent);
 
     for (const obj of exerciseCards) {
       const card = document.createElement("div");
       card.innerHTML = obj;
       sidebar.appendChild(card);
+      exerciseNames.push(target.slice(11));
     }
   };
   addToRoutine(currentExercise);
 };
 
+const getExercise = async (exercise) => {
+  console.log(exercise);
+  try {
+    const response = await fetch("/api/exercises/searchname", {
+      method: "POST",
+      body: JSON.stringify({ name: exercise }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+      return data;
+      alert("New routine created!");
+    } else {
+      alert("Incorrect inputs, try again.");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const submitNewRoutine = async (event) => {
+  event.preventDefault();
+
+  const routineName = document.getElementById("routine-name").value.trim();
+  const routineDate = document.getElementById("routine-date").value.trim();
+  const routineStartTime = document.getElementById("start-time").value.trim();
+  const routineEndTime = document.getElementById("end-time").value.trim();
+
+  //add exercises from array to database with corresponding routine_id
+
+  for (const obj of addedExercises) {
+    try {
+      const response = await fetch("/api/exercises/add", {
+        method: "POST",
+        body: JSON.stringify(obj),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        alert("New exercise added!");
+      } else {
+        alert("Incorrect inputs, try again.");
+      }
+    } catch (err) {
+      alert(err);
+    }
+  }
+
+  //get routine name
+  const body = {
+    routine_id: id,
+    name: routineName,
+    start_date: routineDate,
+    start_time: routineStartTime,
+    end_time: routineEndTime,
+  };
+
+  console.log(exerciseNames);
+  console.log(body);
+
+  try {
+    const response = await fetch("/api/routines/addroutine", {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+      console.log(addedExercises);
+      alert("New routine created!");
+    } else {
+      alert("Incorrect inputs, try again.");
+    }
+  } catch (err) {
+    alert(err);
+  }
+
+  //reset list for next routine submit
+  exerciseNames = [];
+  //add 1 to id, so that the next routine will have a different id, as well as the correllated exercises
+  id++;
+};
+
 //USER INTERACTIONS
 searchButton.addEventListener("click", getExercises);
-
-// exerciseButton.addEventListener("click", addExercise);
 
 for (let i = 0; i < exerciseButton.length; i++) {
   const element = exerciseButton[i];
   element.addEventListener("click", addExercise);
 }
+
+addButton.addEventListener("click", submitNewRoutine);
