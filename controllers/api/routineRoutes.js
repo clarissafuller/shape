@@ -48,39 +48,29 @@ router.get("/:id", async (req, res) => {
 
 // POST ONE request (create)
 // api/routines
+// router.post("/", async (req, res) => {
+//   try {
+//     const newRoutine = await Routine.create({
+//       ...req.body,
+//       user_id: req.session.user_id,
+//     });
+
+//     res.status(200).json(newRoutine);
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
+
 router.post("/", async (req, res) => {
   try {
-    const newRoutine = await Routine.create({
-      ...req.body,
-      user_id: req.session.user_id,
+    const routineData = await Routine.create({
+      routine_id: req.body.routine_id,
     });
-
-    res.status(200).json(newRoutine);
+    res.status(200).json(routineData);
   } catch (err) {
     res.status(400).json(err);
   }
 });
-
-// DELETE ONE request
-// api/routines/:id
-// router.delete("/:id", async (req, res) => {
-//   try {
-//     const routineData = await Routine.destroy({
-//       where: {
-//         id: req.params.id,
-//       },
-//     });
-
-//     if (!routineData) {
-//       res.status(404).json({ message: "No routine found with this id!" });
-//       return;
-//     }
-//     const responseMessage = `Routine deleted successfully. Name: ${routine.name}`;
-//     res.status(200).json(responseMessage);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 
 // DELETE ONE request
 // api/routines/:id

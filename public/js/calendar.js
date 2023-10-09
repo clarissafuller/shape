@@ -16,3 +16,38 @@ $(document).ready(function () {
 $(document).ready(function () {
   $(".calendar-inner").addClass("mr-5");
 });
+<<<<<<< Updated upstream
+=======
+
+function addToCal(data) {
+  $("#calendar").evoCalendar("addCalendarEvent", data);
+}
+
+const getRoutine = async (newDate) => {
+  try {
+    const response = await fetch(`/api/routines;`, {
+      method: "POST",
+      body: JSON.stringify({ date: newDate }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("made it here");
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+    } else {
+      console.error("OMDB Error: " + response.statusText);
+      return null;
+    }
+    // ((data) => addToCal(data));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// selectDate
+$("#calendar").on("selectDate", function (event, newDate, oldDate) {
+  getRoutine(newDate);
+});
+>>>>>>> Stashed changes
