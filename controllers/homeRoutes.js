@@ -15,13 +15,58 @@ router.get("/", withAuth, async (req, res) => {
     //find all the routines
     const dbRoutineData = await Routine.findAll();
 
-    const routines = dbRoutineData.map((routine) =>
-      routine.get({ plain: true })
-    );
+    let sundayRoutines = [];
+    let mondayRoutines = [];
+    let tuesdayRoutines = [];
+    let wednesdayRoutines = [];
+    let thursdayRoutines = [];
+    let fridayRoutines = [];
+    let saturdayRoutines = [];
+
+    dbRoutineData.forEach((routine) => {
+      const dayOfWeek = routine.day_of_week;
+      switch (dayOfWeek) {
+        case "Sunday":
+          sundayRoutines.push(routine.get({ plain: true }));
+          break;
+        case "Monday":
+          mondayRoutines.push(routine.get({ plain: true }));
+          break;
+        case "Tuesday":
+          tuesdayRoutines.push(routine.get({ plain: true }));
+          break;
+        case "Wednesday":
+          wednesdayRoutines.push(routine.get({ plain: true }));
+          break;
+        case "Thursday":
+          thursdayRoutines.push(routine.get({ plain: true }));
+          break;
+        case "Friday":
+          fridayRoutines.push(routine.get({ plain: true }));
+          break;
+        case "Saturday":
+          saturdayRoutines.push(routine.get({ plain: true }));
+          break;
+      }
+    });
+
+    const routineByDay = {
+      Sunday: sundayRoutines,
+      Monday: mondayRoutines,
+      Tuesday: tuesdayRoutines,
+      Wednesday: wednesdayRoutines,
+      Thursday: thursdayRoutines,
+      Friday: fridayRoutines,
+      Saturday: saturdayRoutines,
+    };
+
+    // const routines = dbRoutineData.map((routine) =>
+    //   routine.get({ plain: true })
+    // );
 
     res.render("homepage", {
       users,
-      routines,
+      routineByDay,
       // Pass the logged in flag to the template
       logged_in: req.session.logged_in,
     });
