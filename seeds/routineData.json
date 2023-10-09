@@ -1,22 +1,52 @@
 [
   {
     "name": "Leg Day",
-    "is_template": false
+    "is_template": false,
+    "day_of_week": "Sunday"
   },
   {
     "name": "Arm Day",
-    "is_template": false
+    "is_template": false,
+    "day_of_week": "Sunday"
   },
   {
     "name": "Upper Body",
-    "is_template": false
+    "is_template": false,
+    "day_of_week": "Sunday"
   },
   {
     "name": "Lower Body",
-    "is_template": false
+    "is_template": false,
+    "day_of_week": "Sunday"
   },
   {
     "name": "Full Stack",
-    "is_template": false
+    "is_template": false,
+    "day_of_week": "Monday"
+  },
+  {
+    "name": "Tuesday Rtn",
+    "is_template": false,
+    "day_of_week": "Tuesday"
+  },
+  {
+    "name": "Wednesday Rtn",
+    "is_template": false,
+    "day_of_week": "Wednesday"
+  },
+  {
+    "name": "Full Stack - Thur",
+    "is_template": false,
+    "day_of_week": "Thursday"
+  },
+  {
+    "name": "Friday Stack ",
+    "is_template": false,
+    "day_of_week": "Friday"
+  },
+  {
+    "name": "Saturday SAT - Rtn",
+    "is_template": false,
+    "day_of_week": "Saturday"
   }
 ]
