@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Exercise, Routine } = require("../models");
+const { User, Exercise, Routine, RoutineExercise } = require("../models");
 const withAuth = require("../utils/auth");
 
 // Prevent non logged in users from viewing the homepage
@@ -15,13 +15,58 @@ router.get("/", withAuth, async (req, res) => {
     //find all the routines
     const dbRoutineData = await Routine.findAll();
 
-    const routines = dbRoutineData.map((routine) =>
-      routine.get({ plain: true })
-    );
+    let sundayRoutines = [];
+    let mondayRoutines = [];
+    let tuesdayRoutines = [];
+    let wednesdayRoutines = [];
+    let thursdayRoutines = [];
+    let fridayRoutines = [];
+    let saturdayRoutines = [];
+
+    dbRoutineData.forEach((routine) => {
+      const dayOfWeek = routine.day_of_week;
+      switch (dayOfWeek) {
+        case "Sunday":
+          sundayRoutines.push(routine.get({ plain: true }));
+          break;
+        case "Monday":
+          mondayRoutines.push(routine.get({ plain: true }));
+          break;
+        case "Tuesday":
+          tuesdayRoutines.push(routine.get({ plain: true }));
+          break;
+        case "Wednesday":
+          wednesdayRoutines.push(routine.get({ plain: true }));
+          break;
+        case "Thursday":
+          thursdayRoutines.push(routine.get({ plain: true }));
+          break;
+        case "Friday":
+          fridayRoutines.push(routine.get({ plain: true }));
+          break;
+        case "Saturday":
+          saturdayRoutines.push(routine.get({ plain: true }));
+          break;
+      }
+    });
+
+    const routineByDay = {
+      Sunday: sundayRoutines,
+      Monday: mondayRoutines,
+      Tuesday: tuesdayRoutines,
+      Wednesday: wednesdayRoutines,
+      Thursday: thursdayRoutines,
+      Friday: fridayRoutines,
+      Saturday: saturdayRoutines,
+    };
+
+    // const routines = dbRoutineData.map((routine) =>
+    //   routine.get({ plain: true })
+    // );
 
     res.render("homepage", {
       users,
-      routines,
+      routineByDay,
       // Pass the logged in flag to the template
       logged_in: req.session.logged_in,
     });
@@ -30,20 +75,37 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
-// //route for make routines page
-router.get("/make-routine", withAuth, async (req, res) => {
+// route for make routines page
+// router.get("/make-routine/:id", withAuth, async (req, res) => {
+//   try {
+//     const exerciseData = await Exercise.findAll({});
+
+//     const exercises = exerciseData.map((exercise) =>
+//       exercise.get({ plain: true })
+//     );
+//     console.log(exercises);
+//     res.render("make-routine", {
+//       exercises,
+//       // Pass the logged in flag to the template
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
+
+router.get("/make-routine/:id", async (req, res) => {
   try {
+    const dbRoutineData = await Routine.findByPk(req.params.id);
+
     const exerciseData = await Exercise.findAll({});
 
     const exercises = exerciseData.map((exercise) =>
       exercise.get({ plain: true })
     );
-    console.log(exercises);
-    res.render("make-routine", {
-      exercises,
-      // Pass the logged in flag to the template
-      logged_in: req.session.logged_in,
-    });
+    const routine = dbRoutineData.get({ plain: true });
+    res.render("make-routine", { routine, exercises });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

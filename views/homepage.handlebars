@@ -1,7 +1,7 @@
 <div class="d-flex flex-row justify-content-around m-5">
   <div class="d-flex col-4 bg-dark bg-gradient" style="height:100px">
-    <a href="./make-routine" class="mx-auto text-center align-self-center">
-      <button class="btn btn-secondary active">Create a New Workout</button>
+    <a href="./make-routine/{{routines.id}}" class="mx-auto text-center align-self-center">
+      <button id="nav-create-button" class="btn btn-secondary active">Create a New Workout</button>
     </a>
   </div>
    <div>
@@ -33,10 +33,8 @@
         <h5 class="card-title"></h5>
         <p class="card-text">
           <div class="routine-data">
-            {{!-- {{#if routine}} --}}
 
-            {{#each routines as |routine|}}
-              {{!-- {{#if routine.date === }} --}}
+            {{#each routineByDay.Sunday as |routine|}}
 
               <a
                 href="../routine"
@@ -47,7 +45,6 @@
                 {{routine.name}}
               </a>
 
-              {{!-- {{/if}} --}}
             {{/each}}
 
           </div>
@@ -61,10 +58,8 @@
         <h5 class="card-title"></h5>
         <p class="card-text">
           <div class="routine-data">
-            {{!-- {{#if routine}} --}}
 
-            {{#each routines as |routine|}}
-              {{!-- {{#if routine.date === }} --}}
+            {{#each routineByDay.Monday as |routine|}}
 
               <a
                 href="../routine"
@@ -75,7 +70,6 @@
                 {{routine.name}}
               </a>
 
-              {{!-- {{/if}} --}}
             {{/each}}
 
           </div>
@@ -88,10 +82,8 @@
         <h5 class="card-title"></h5>
         <p class="card-text">
           <div class="routine-data">
-            {{!-- {{#if routine}} --}}
 
-            {{#each routines as |routine|}}
-              {{!-- {{#if routine.date === }} --}}
+            {{#each routineByDay.Tuesday as |routine|}}
 
               <a
                 href="../routine"
@@ -102,7 +94,6 @@
                 {{routine.name}}
               </a>
 
-              {{!-- {{/if}} --}}
             {{/each}}
 
           </div>
@@ -115,10 +106,8 @@
         <h5 class="card-title"></h5>
         <p class="card-text">
           <div class="routine-data">
-            {{!-- {{#if routine}} --}}
 
-            {{#each routines as |routine|}}
-              {{!-- {{#if routine.date === }} --}}
+            {{#each routineByDay.Wednesday as |routine|}}
 
               <a
                 href="../routine"
@@ -129,7 +118,6 @@
                 {{routine.name}}
               </a>
 
-              {{!-- {{/if}} --}}
             {{/each}}
 
           </div>
@@ -142,10 +130,8 @@
         <h5 class="card-title"></h5>
         <p class="card-text">
           <div class="routine-data">
-            {{!-- {{#if routine}} --}}
 
-            {{#each routines as |routine|}}
-              {{!-- {{#if routine.date === }} --}}
+            {{#each routineByDay.Thursday as |routine|}}
 
               <a
                 href="../routine"
@@ -156,7 +142,6 @@
                 {{routine.name}}
               </a>
 
-              {{!-- {{/if}} --}}
             {{/each}}
 
           </div>
@@ -169,10 +154,8 @@
         <h5 class="card-title"></h5>
         <p class="card-text">
           <div class="routine-data">
-            {{!-- {{#if routine}} --}}
 
-            {{#each routines as |routine|}}
-              {{!-- {{#if routine.date === }} --}}
+            {{#each routineByDay.Friday as |routine|}}
 
               <a
                 href="../routine"
@@ -183,7 +166,6 @@
                 {{routine.name}}
               </a>
 
-              {{!-- {{/if}} --}}
             {{/each}}
 
           </div>
@@ -196,10 +178,8 @@
         <h5 class="card-title"></h5>
         <p class="card-text">
           <div class="routine-data">
-            {{!-- {{#if routine}} --}}
 
-            {{#each routines as |routine|}}
-              {{!-- {{#if routine.date === }} --}}
+            {{#each routineByDay.Saturday as |routine|}}
 
               <a
                 href="../routine"
@@ -210,7 +190,6 @@
                 {{routine.name}}
               </a>
 
-              {{!-- {{/if}} --}}
             {{/each}}
 
           </div>
