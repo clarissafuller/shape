@@ -48,39 +48,52 @@ router.get("/:id", async (req, res) => {
 
 // POST ONE request (create)
 // api/routines
+// router.post("/", async (req, res) => {
+//   try {
+//     const newRoutine = await Routine.create({
+//       ...req.body,
+//       user_id: req.session.user_id,
+//     });
+
+//     res.status(200).json(newRoutine);
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
+
 router.post("/", async (req, res) => {
   try {
-    const newRoutine = await Routine.create({
-      ...req.body,
-      user_id: req.session.user_id,
+    const routineData = await Routine.create({
+      routine_id: req.body.routine_id,
     });
-
-    res.status(200).json(newRoutine);
+    res.status(200).json(routineData);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-// DELETE ONE request
-// api/routines/:id
-// router.delete("/:id", async (req, res) => {
-//   try {
-//     const routineData = await Routine.destroy({
-//       where: {
-//         id: req.params.id,
-//       },
-//     });
-
-//     if (!routineData) {
-//       res.status(404).json({ message: "No routine found with this id!" });
-//       return;
-//     }
-//     const responseMessage = `Routine deleted successfully. Name: ${routine.name}`;
-//     res.status(200).json(responseMessage);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+// Updates routine based on its id
+router.put("/:id", (req, res) => {
+  // Calls the update method on the Book model
+  Routine.update(
+    {
+      // All the fields you can update and the data attached to the request body.
+      name: req.body.name,
+      day_of_week: req.body.day_of_week,
+    },
+    {
+      // Gets the routine based on the id given in the request parameters
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+    .then((updatedRoutine) => {
+      // Sends the updated routine as a json response
+      res.json(updatedRoutine);
+    })
+    .catch((err) => res.json(err));
+});
 
 // DELETE ONE request
 // api/routines/:id
