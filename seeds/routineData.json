@@ -1,26 +1,26 @@
 [
   {
-    "name": "Leg Day",
+    "name": "Leg Day - Sun",
     "is_template": false,
     "day_of_week": "Sunday"
   },
   {
-    "name": "Arm Day",
+    "name": "Arm Day - Sun",
     "is_template": false,
     "day_of_week": "Sunday"
   },
   {
-    "name": "Upper Body",
+    "name": "Upper Body - Sun",
     "is_template": false,
     "day_of_week": "Sunday"
   },
   {
-    "name": "Lower Body",
+    "name": "Lower Body - Sun",
     "is_template": false,
     "day_of_week": "Sunday"
   },
   {
-    "name": "Full Stack",
+    "name": "Full Stack - Mon",
     "is_template": false,
     "day_of_week": "Monday"
   },
