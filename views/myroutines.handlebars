@@ -1,23 +1,23 @@
+<section class="container bg-dark border border-tertiary-subtle rounded-3">
+  <div class="text-light">
+    <h1>My Routines</h1>
+  </div>
+  <br>
+  <section class="flex-row justify-center">
+    
+    {{#each routines as |routine|}}
+        <div class="routine-container">
+        <h3 class="text-light">{{routine.id}}. {{routine.name}}</h3>
+        
+        {{#each routine.exercises as |exercise|}}
+          {{> myroutine-details}}
+        {{/each}}
 
-<section class="container bg-dark border border-tertiary-subtle rounded-3"> {{!-- need CSS class --}}
-  <div class="text-light"><h1>My Routines</h1></div>
-<br>
-<section class="flex-row justify-center"> {{!-- need CSS class --}}
+        <a data-id="{{routine.id}}" class="btn btn-danger delete-routine-button">Delete routine</a>
+        <hr />
 
-{{#each routines as |routine|}}
-    <h3 class="text-light">{{id}}. {{name}}</h3>
-
-    {{#each routine.exercises as | exercise|}}
-        {{> myroutine-details}}
+      </div>
     {{/each}}
 
-     {{! button }}
-              <a href="#" class="btn btn-danger">Delete routine</a>
-      <hr />    
-{{/each}}
-
-
   </section>
-
 </section>
-
