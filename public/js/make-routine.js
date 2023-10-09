@@ -224,12 +224,17 @@ const addExercise = function (event) {
 //function to take new form input data and add to routine via PUT route
 
 const updateRoutineName = async function (event) {
+
+  const id = window.location.toString().split('/')[
+    window.location.toString().split('/').length - 1
+  ];
+
   event.preventDefault();
   console.log(event);
     const newNameInput = document.getElementById("name-input").value.trim();
     console.log(newNameInput);
 
-    await fetch("/api/routines/:id", {
+    await fetch(`/api/routines/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -247,19 +252,23 @@ const updateRoutineName = async function (event) {
       })
       .then((data) => document.querySelector("#new-name").innerHTML = `successfully renamed to: ${data.name}` );
 
-  
 }
 
 //function to update day of week 
 
 const updateRoutineDay = async function (event) {
+
+  const id = window.location.toString().split('/')[
+    window.location.toString().split('/').length - 1
+  ];
+  
   event.preventDefault();
   console.log(event);
     const newDayInput = document.getElementById("dropdown-day-input").value
   
 console.log(newDayInput);
 
-    await fetch("/api/routines/:id", {
+    await fetch(`/api/routines/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
