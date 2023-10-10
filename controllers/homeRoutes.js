@@ -95,7 +95,7 @@ router.get("/", withAuth, async (req, res) => {
 //   }
 // });
 
-router.get("/make-routine/:id", async (req, res) => {
+router.get("/make-routine/:id", withAuth, async (req, res) => {
   try {
     const dbRoutineData = await Routine.findByPk(req.params.id);
 
