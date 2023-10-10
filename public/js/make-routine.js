@@ -224,75 +224,72 @@ const addExercise = function (event) {
 //function to take new form input data and add to routine via PUT route
 
 const updateRoutineName = async function (event) {
-
-  const id = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
+  const id = window.location.toString().split("/")[
+    window.location.toString().split("/").length - 1
   ];
 
   event.preventDefault();
   console.log(event);
-    const newNameInput = document.getElementById("name-input").value.trim();
-    console.log(newNameInput);
+  const newNameInput = document.getElementById("name-input").value.trim();
 
-    await fetch(`/api/routines/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({name: newNameInput}),
+  await fetch(`/api/routines/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name: newNameInput }),
+  })
+    .then(function (response) {
+      if (response.ok) {
+        console.log("added to the data base!", newNameInput);
+
+        return response.json();
+      } else {
+        console.error(response.statusText);
+        return null;
+      }
     })
-      .then(function (response) {
-        if (response.ok) {
-          
-          return response.json();
-        } else {
-          console.error(response.statusText);
-          return null;
-        }
-      })
-      .then((data) => document.querySelector("#new-name").innerHTML = `successfully renamed to: ${data.name}` );
+    .then(
+      (data) =>
+        (document.querySelector(
+          "#new-name"
+        ).innerHTML = `successfully renamed to: ${data.name}`)
+    );
+};
 
-}
-
-//function to update day of week 
+//function to update day of week
 
 const updateRoutineDay = async function (event) {
-
-  const id = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
+  const id = window.location.toString().split("/")[
+    window.location.toString().split("/").length - 1
   ];
-  
+
   event.preventDefault();
   console.log(event);
-    const newDayInput = document.getElementById("dropdown-day-input").value
-  
-console.log(newDayInput);
+  const newDayInput = document.getElementById("dropdown-day-input").value;
 
-    await fetch(`/api/routines/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({day_of_week: newDayInput}),
-    })
-      .then(function (response) {
-        if (response.ok) {
-          return response.json();
-        } else {
-          console.error(response.statusText);
-          return null;
-        }
-      })
-      // .then((data) => document.querySelector("#new-name").innerHTML = `successfully renamed to: ${data.name}` );
-
-}
-
+  await fetch(`/api/routines/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ day_of_week: newDayInput }),
+  }).then(function (response) {
+    if (response.ok) {
+      console.log("added to the data base!", newDayInput);
+      return response.json();
+    } else {
+      console.error(response.statusText);
+      return null;
+    }
+  });
+  // .then((data) => document.querySelector("#new-name").innerHTML = `successfully renamed to: ${data.name}` );
+};
 
 //USER INTERACTIONS
 searchButton.addEventListener("click", getExercises);
 updateNameButton.addEventListener("click", updateRoutineName);
 updateDayButton.addEventListener("click", updateRoutineDay);
-
 
 // exerciseButton.addEventListener("click", addExercise);
 
