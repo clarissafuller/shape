@@ -274,7 +274,7 @@ const updateRoutineName = async function (event) {
       (data) =>
         (document.querySelector(
           "#new-name"
-        ).innerHTML = `successfully renamed to: ${data.name}`)
+        ).innerHTML = `successfully renamed!`)
     );
 };
 
