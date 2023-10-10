@@ -1,4 +1,5 @@
 const navCreateButton = document.getElementById("nav-create-button");
+const createButton = document.getElementById("create-workout-button");
 
 function createNewRoutine() {
   fetch("/api/routines", {
@@ -21,3 +22,4 @@ function createNewRoutine() {
 
 //USER INTERACTIONS
 navCreateButton.addEventListener("click", createNewRoutine);
+createButton.addEventListener("click", createNewRoutine);
