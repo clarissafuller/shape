@@ -23,11 +23,8 @@ Routine.init(
     },
     day_of_week: {
       type: DataTypes.STRING,
-<<<<<<< HEAD
       allowNull: false,
       defaultValue: "Monday",
-=======
->>>>>>> 7ff2fcd7d7ce210731e3922368f2b9e4e5825402
     },
   },
   {
