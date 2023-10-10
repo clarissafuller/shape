@@ -5,6 +5,7 @@ const searchButton = document.getElementById("search-button");
 let exerciseButton = document.getElementsByClassName("add-exercise");
 const updateNameButton = document.getElementById("update-name-button");
 const updateDayButton = document.getElementById("update-day-button");
+const addRoutineButton = document.getElementById("add-routine-button");
 
 //sidebar
 const sidebar = document.getElementById("routine-list");
@@ -101,7 +102,7 @@ function loadExercises(data) {
                   />
                   <input
                     type="hidden"
-                    value="0"
+                    value="${exercise.id}"
                     id="exerciseId"
                     aria-label="id"
                   />
@@ -160,14 +161,33 @@ const addExercise = function (event) {
   const target =
     event.target.parentNode.parentNode.parentNode.parentNode.parentNode
       .children[1].innerHTML;
+  const routineId = window.location.toString().split("/")[
+    window.location.toString().split("/").length - 1
+  ];
 
   //get exercise ID and name
   const exerciseId = event.target.parentNode.children[1].children[2].value;
   const name = event.target.parentNode.children[1].children[3].value;
 
   //add to array of added exercises
-  addedExercises.push({ weight, sets, reps, target, exerciseId, name });
-  const currentExercise = { weight, sets, reps, target, exerciseId, name };
+  addedExercises.push({
+    weight,
+    sets,
+    reps,
+    target,
+    exerciseId,
+    name,
+    routineId,
+  });
+  const currentExercise = {
+    weight,
+    sets,
+    reps,
+    target,
+    exerciseId,
+    name,
+    routineId,
+  };
   console.log(addedExercises);
 
   // function to render added exercise to sidebar
@@ -179,6 +199,7 @@ const addExercise = function (event) {
     const exerciseSets = currentExercise.sets;
     const exerciseTarget = currentExercise.target;
     const exerciseReps = currentExercise.reps;
+    // const windowId = currentExercise.routineId;
 
     const cardContent = `
     <div class="d-flex flex-column justify-content-center bg-dark border border-tertiary-subtle rounded-3 my-2">
@@ -286,10 +307,50 @@ const updateRoutineDay = async function (event) {
   // .then((data) => document.querySelector("#new-name").innerHTML = `successfully renamed to: ${data.name}` );
 };
 
+const addRoutinetodb = async function (event) {
+  for (const obj of addedExercises) {
+    try {
+      const response = await fetch("/api/routineExercises", {
+        method: "POST",
+        body: JSON.stringify(obj),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        alert("New routine-exercise added!");
+      } else {
+        alert("Incorrect inputs, try again.");
+      }
+    } catch (err) {
+      alert(err);
+    }
+  }
+};
+
+//   fetch("/api/exercises/search", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(preparedBody),
+//   })
+//     .then(function (response) {
+//       if (response.ok) {
+//         return response.json();
+//       } else {
+//         console.error(response.statusText);
+//         return null;
+//       }
+//     })
+//     .then((data) => loadExercises(data));
+
 //USER INTERACTIONS
 searchButton.addEventListener("click", getExercises);
 updateNameButton.addEventListener("click", updateRoutineName);
 updateDayButton.addEventListener("click", updateRoutineDay);
+addRoutineButton.addEventListener("click", addRoutinetodb);
 
 // exerciseButton.addEventListener("click", addExercise);
 
