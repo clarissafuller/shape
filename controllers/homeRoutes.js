@@ -105,7 +105,11 @@ router.get("/make-routine/:id", async (req, res) => {
       exercise.get({ plain: true })
     );
     const routine = dbRoutineData.get({ plain: true });
-    res.render("make-routine", { routine, exercises });
+    res.render("make-routine", {
+      routine,
+      exercises,
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
