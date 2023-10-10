@@ -6,18 +6,17 @@ function createNewRoutine() {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(),
   })
     .then(function (response) {
       if (response.ok) {
-        console.log(response);
+        return response.json();
         //
       } else {
         console.error("OMDB Error: " + response.statusText);
         return null;
       }
     })
-    .then((data) => document.location.replace(`make-routine/${data.id}`));
+    .then((data) => document.location.replace(`/make-routine/${data.id}`));
 }
 
 //USER INTERACTIONS

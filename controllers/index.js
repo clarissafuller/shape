@@ -9,7 +9,7 @@ const apiRoutes = require("./api");
 router.use("/", homeRoutes);
 router.use("/routine", routineRoutes);
 router.use("/calendar", calendarRoutes);
-router.use("/make-route", makeRoutineRoutes);
+router.use("/make-routine", makeRoutineRoutes);
 router.use("/api", apiRoutes);
 
 module.exports = router;

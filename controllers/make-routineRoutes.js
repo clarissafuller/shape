@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Exercise } = require("../models");
 
 // GET all exercises for make-routine page
-router.get("/", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const dbExerciseData = await Exercise.findAll();
 
